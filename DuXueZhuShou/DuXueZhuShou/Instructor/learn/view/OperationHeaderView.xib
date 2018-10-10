@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="OperationHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="373" height="543"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Zf9-Xi-Kqi">
+                    <rect key="frame" x="15" y="230" width="343" height="298"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GZz-Zg-I3h">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILk-Ll-Rkw">
+                    <rect key="frame" x="15" y="15" width="343" height="200"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxV-B6-bXW">
+                            <rect key="frame" x="291" y="172" width="42" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="g1g-xa-wbA">
+                            <rect key="frame" x="10" y="15" width="323" height="147"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="g1g-xa-wbA" firstAttribute="top" secondItem="ILk-Ll-Rkw" secondAttribute="top" constant="15" id="1Lc-G9-dln"/>
+                        <constraint firstAttribute="trailing" secondItem="g1g-xa-wbA" secondAttribute="trailing" constant="10" id="5yJ-2C-QEa"/>
+                        <constraint firstItem="g1g-xa-wbA" firstAttribute="leading" secondItem="ILk-Ll-Rkw" secondAttribute="leading" constant="10" id="Czk-vN-TLn"/>
+                        <constraint firstAttribute="trailing" secondItem="FxV-B6-bXW" secondAttribute="trailing" constant="10" id="tzm-8V-MQT"/>
+                        <constraint firstAttribute="height" constant="200" id="vPO-m6-xMq"/>
+                        <constraint firstAttribute="bottom" secondItem="FxV-B6-bXW" secondAttribute="bottom" constant="10" id="xPb-AF-Aq6"/>
+                        <constraint firstItem="FxV-B6-bXW" firstAttribute="top" secondItem="g1g-xa-wbA" secondAttribute="bottom" constant="10" id="ya9-U5-Fp9"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ILk-Ll-Rkw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="8Tq-Lu-qaZ"/>
+                <constraint firstItem="ILk-Ll-Rkw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="D8J-6i-hPQ"/>
+                <constraint firstItem="Zf9-Xi-Kqi" firstAttribute="top" secondItem="ILk-Ll-Rkw" secondAttribute="bottom" constant="15" id="Og6-vP-aEK"/>
+                <constraint firstItem="Zf9-Xi-Kqi" firstAttribute="trailing" secondItem="ILk-Ll-Rkw" secondAttribute="trailing" id="dWT-eP-i3i"/>
+                <constraint firstAttribute="bottom" secondItem="Zf9-Xi-Kqi" secondAttribute="bottom" constant="15" id="eUT-XQ-BwT"/>
+                <constraint firstAttribute="trailing" secondItem="ILk-Ll-Rkw" secondAttribute="trailing" constant="15" id="gpM-qG-k0H"/>
+                <constraint firstItem="Zf9-Xi-Kqi" firstAttribute="leading" secondItem="ILk-Ll-Rkw" secondAttribute="leading" id="kCq-6e-i8U"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="collectionview" destination="Zf9-Xi-Kqi" id="Fry-6f-6NW"/>
+                <outlet property="numLb" destination="FxV-B6-bXW" id="DHH-YS-gGW"/>
+                <outlet property="textview" destination="g1g-xa-wbA" id="VPD-2g-TeW"/>
+            </connections>
+            <point key="canvasLocation" x="31.5" y="-5.5"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MineHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="366" height="248"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beijing" translatesAutoresizingMaskIntoConstraints="NO" id="kgK-M2-gpf">
+                    <rect key="frame" x="0.0" y="0.0" width="366" height="248"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RJl-KG-wDL">
+                    <rect key="frame" x="30" y="30" width="75" height="75"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="RJl-KG-wDL" secondAttribute="height" multiplier="1:1" id="WXS-p1-OY5"/>
+                        <constraint firstAttribute="width" constant="75" id="bhV-ff-lEO"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="eBc-Rf-1lg" appends="YES" id="dtL-Cb-nww"/>
+                    </connections>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学校校区班级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J76-OZ-nac">
+                    <rect key="frame" x="120" y="42.5" width="231" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="CMk-um-Ced"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kkk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArU-NB-occ">
+                    <rect key="frame" x="120" y="67.5" width="24" height="25"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一等兵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcl-Ti-lL0">
+                    <rect key="frame" x="159" y="67.5" width="43" height="25"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <real key="value" value="12.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="kgK-M2-gpf" secondAttribute="trailing" id="7UI-7y-wgr"/>
+                <constraint firstItem="J76-OZ-nac" firstAttribute="centerY" secondItem="RJl-KG-wDL" secondAttribute="centerY" constant="-12.5" id="BUd-ox-n7t"/>
+                <constraint firstAttribute="bottom" secondItem="kgK-M2-gpf" secondAttribute="bottom" id="BnJ-td-NOB"/>
+                <constraint firstAttribute="trailing" secondItem="J76-OZ-nac" secondAttribute="trailing" constant="15" id="L4h-QD-h08"/>
+                <constraint firstItem="gcl-Ti-lL0" firstAttribute="leading" secondItem="ArU-NB-occ" secondAttribute="trailing" constant="15" id="TRn-w2-S89"/>
+                <constraint firstItem="RJl-KG-wDL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="UKe-re-ZJp"/>
+                <constraint firstItem="ArU-NB-occ" firstAttribute="leading" secondItem="J76-OZ-nac" secondAttribute="leading" id="dY3-2a-O3b"/>
+                <constraint firstItem="kgK-M2-gpf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dap-fB-wsT"/>
+                <constraint firstItem="J76-OZ-nac" firstAttribute="leading" secondItem="RJl-KG-wDL" secondAttribute="trailing" constant="15" id="iBj-RK-R9b"/>
+                <constraint firstItem="kgK-M2-gpf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="l7R-uk-q9m"/>
+                <constraint firstItem="RJl-KG-wDL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="n8a-B1-PK3"/>
+                <constraint firstItem="gcl-Ti-lL0" firstAttribute="height" secondItem="J76-OZ-nac" secondAttribute="height" id="rWy-an-gOh"/>
+                <constraint firstItem="gcl-Ti-lL0" firstAttribute="centerY" secondItem="ArU-NB-occ" secondAttribute="centerY" id="rb4-lz-5b4"/>
+                <constraint firstItem="ArU-NB-occ" firstAttribute="height" secondItem="J76-OZ-nac" secondAttribute="height" id="tQG-tM-BoI"/>
+                <constraint firstItem="ArU-NB-occ" firstAttribute="top" secondItem="J76-OZ-nac" secondAttribute="bottom" id="yIU-6z-QKU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="addressLb" destination="J76-OZ-nac" id="JG2-ky-pxj"/>
+                <outlet property="gardeLb" destination="gcl-Ti-lL0" id="QjK-4y-awz"/>
+                <outlet property="iconIm" destination="RJl-KG-wDL" id="VaG-bB-qF5"/>
+                <outlet property="nameLb" destination="ArU-NB-occ" id="xOa-dO-2mP"/>
+                <outletCollection property="gestureRecognizers" destination="eBc-Rf-1lg" appends="YES" id="2nd-zk-SAb"/>
+            </connections>
+            <point key="canvasLocation" x="-20" y="-129"/>
+        </view>
+        <tapGestureRecognizer id="eBc-Rf-1lg">
+            <connections>
+                <action selector="iconClick:" destination="iN0-l3-epB" id="Ffl-aE-R5i"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="beijing" width="375" height="154"/>
+    </resources>
+</document>

@@ -1,0 +1,14 @@
+//
+//  ChartDataFormatter.h
+//  DuXueZhuShou
+//
+//  Created by admin on 2018/9/17.
+//  Copyright © 2018年 admin. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "DuXueZhuShou-Swift.h"
+@interface ChartDataFormatter : NSObject
+<IChartValueFormatter>
+
+@end

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="MyClassTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65T-zf-fJU">
+                        <rect key="frame" x="15" y="15" width="73.5" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPp-oQ-P1Z">
+                        <rect key="frame" x="98.5" y="15" width="73" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所报科目" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkh-d9-nfq">
+                        <rect key="frame" x="181.5" y="15" width="123.5" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jkh-d9-nfq" firstAttribute="width" secondItem="65T-zf-fJU" secondAttribute="width" constant="50" id="00i-Jj-O0A"/>
+                    <constraint firstItem="65T-zf-fJU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="AxP-nj-O4t"/>
+                    <constraint firstItem="jkh-d9-nfq" firstAttribute="leading" secondItem="hPp-oQ-P1Z" secondAttribute="trailing" constant="10" id="Eud-mP-xaD"/>
+                    <constraint firstAttribute="bottom" secondItem="jkh-d9-nfq" secondAttribute="bottom" constant="15" id="F2c-GY-slp"/>
+                    <constraint firstItem="65T-zf-fJU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Jdq-hr-8pI"/>
+                    <constraint firstItem="hPp-oQ-P1Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="PXl-x0-SJ5"/>
+                    <constraint firstItem="hPp-oQ-P1Z" firstAttribute="leading" secondItem="65T-zf-fJU" secondAttribute="trailing" constant="10" id="aoU-zC-eI8"/>
+                    <constraint firstItem="jkh-d9-nfq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="axn-MZ-GbU"/>
+                    <constraint firstItem="hPp-oQ-P1Z" firstAttribute="width" secondItem="65T-zf-fJU" secondAttribute="width" id="dwU-7c-Wsw"/>
+                    <constraint firstAttribute="bottom" secondItem="hPp-oQ-P1Z" secondAttribute="bottom" constant="15" id="gWc-mn-i1f"/>
+                    <constraint firstAttribute="bottom" secondItem="65T-zf-fJU" secondAttribute="bottom" constant="15" id="kBG-Xm-zna"/>
+                    <constraint firstAttribute="trailing" secondItem="jkh-d9-nfq" secondAttribute="trailing" constant="15" id="uVX-GY-G1A"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="label1" destination="65T-zf-fJU" id="94Q-6h-yWa"/>
+                <outlet property="label2" destination="hPp-oQ-P1Z" id="pZa-Sz-NaO"/>
+                <outlet property="label3" destination="jkh-d9-nfq" id="9S1-VO-glV"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

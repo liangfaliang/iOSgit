@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PregnantHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="366" height="231"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chanfubeijing" translatesAutoresizingMaskIntoConstraints="NO" id="ckU-qO-5dq">
+                    <rect key="frame" x="15" y="10" width="336" height="211"/>
+                </imageView>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqg-Xq-xdR">
+                    <rect key="frame" x="153" y="35" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="UkQ-B4-hRv"/>
+                        <constraint firstAttribute="width" constant="60" id="Yoe-i0-SJY"/>
+                    </constraints>
+                    <state key="normal" image="yunchanfutouxiang"/>
+                    <connections>
+                        <action selector="addBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="vuj-se-YOO"/>
+                    </connections>
+                </button>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xG6-dX-alE">
+                    <rect key="frame" x="99" y="105" width="169" height="30"/>
+                    <state key="normal" title="  点击此处添加孕妇信息  ">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="addBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="0f7-at-l21"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="距离宝宝出生还有200天" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o80-3J-yKk">
+                    <rect key="frame" x="20" y="176" width="326" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="djJ-GI-C0s"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.37647058823529411" green="0.83137254901960778" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEY-0B-uEs">
+                    <rect key="frame" x="91" y="55.5" width="42" height="20"/>
+                    <color key="backgroundColor" red="0.37647058823529411" green="0.83137254901960778" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="FkJ-JB-ktl"/>
+                        <constraint firstAttribute="width" constant="42" id="HbK-F0-VkJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Dqg-Xq-xdR" firstAttribute="leading" secondItem="FEY-0B-uEs" secondAttribute="trailing" constant="20" id="3yP-nW-cKI"/>
+                <constraint firstItem="Dqg-Xq-xdR" firstAttribute="centerY" secondItem="FEY-0B-uEs" secondAttribute="centerY" id="8sF-Dz-dBQ"/>
+                <constraint firstItem="Dqg-Xq-xdR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="BwI-jj-vya"/>
+                <constraint firstItem="Dqg-Xq-xdR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DhI-Yv-AZ5"/>
+                <constraint firstItem="ckU-qO-5dq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="FO6-tl-8sy"/>
+                <constraint firstItem="xG6-dX-alE" firstAttribute="centerX" secondItem="Dqg-Xq-xdR" secondAttribute="centerX" id="INM-dw-hbL"/>
+                <constraint firstAttribute="trailing" secondItem="ckU-qO-5dq" secondAttribute="trailing" constant="15" id="RO8-aO-JjV"/>
+                <constraint firstItem="o80-3J-yKk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Why-aU-Txb"/>
+                <constraint firstAttribute="bottom" secondItem="ckU-qO-5dq" secondAttribute="bottom" constant="10" id="aPv-md-f96"/>
+                <constraint firstAttribute="bottom" secondItem="o80-3J-yKk" secondAttribute="bottom" constant="30" id="ea3-dI-bri"/>
+                <constraint firstItem="ckU-qO-5dq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="exK-eu-SGA"/>
+                <constraint firstAttribute="trailing" secondItem="o80-3J-yKk" secondAttribute="trailing" constant="20" id="f2X-Bh-mSB"/>
+                <constraint firstItem="xG6-dX-alE" firstAttribute="top" secondItem="Dqg-Xq-xdR" secondAttribute="bottom" constant="10" id="oLB-NU-Dsk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="iconAddbtn" destination="Dqg-Xq-xdR" id="KJn-yZ-mXW"/>
+                <outlet property="laveLb" destination="o80-3J-yKk" id="a6t-jP-pMG"/>
+                <outlet property="nameBtn" destination="xG6-dX-alE" id="wn8-V8-IFv"/>
+                <outlet property="timeTypeLb" destination="FEY-0B-uEs" id="JKA-qf-Y8m"/>
+                <outlet property="timeTypeRight" destination="3yP-nW-cKI" id="HK7-al-X2k"/>
+                <outlet property="timeTypeWidth" destination="HbK-F0-VkJ" id="FKN-Ak-uu9"/>
+            </connections>
+            <point key="canvasLocation" x="29" y="62.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chanfubeijing" width="344" height="188"/>
+        <image name="yunchanfutouxiang" width="61" height="61"/>
+    </resources>
+</document>

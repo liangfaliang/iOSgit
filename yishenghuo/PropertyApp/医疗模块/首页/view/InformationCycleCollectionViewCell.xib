@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="InformationCycleCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="399" height="85"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="399" height="85"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yiliaozixun" translatesAutoresizingMaskIntoConstraints="NO" id="K6i-Ss-JGH">
+                        <rect key="frame" x="15" y="23" width="35" height="39"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h5C-zG-MI3" customClass="YYLabel">
+                        <rect key="frame" x="60" y="20" width="324" height="20"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Blh-s4-0D2"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                <color key="value" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="text" value=" 热点 乳腺癌越早发现越好治"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize_">
+                                <real key="value" value="14"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hdx-kG-JBL">
+                        <rect key="frame" x="60" y="40" width="324" height="5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" id="EFu-1R-Tdy"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZk-Y7-3DS" customClass="YYLabel">
+                        <rect key="frame" x="60" y="45" width="324" height="20"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="x30-gM-esS"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                <color key="value" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="text" value=" 健康 得了高血压，吃药有讲究"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize_">
+                                <real key="value" value="14"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Hdx-kG-JBL" firstAttribute="leading" secondItem="K6i-Ss-JGH" secondAttribute="trailing" constant="10" id="3pf-B7-hSX"/>
+                <constraint firstItem="Hdx-kG-JBL" firstAttribute="top" secondItem="h5C-zG-MI3" secondAttribute="bottom" id="4oE-yX-Ao6"/>
+                <constraint firstItem="Hdx-kG-JBL" firstAttribute="trailing" secondItem="h5C-zG-MI3" secondAttribute="trailing" id="5HU-Rf-NCA"/>
+                <constraint firstItem="K6i-Ss-JGH" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="InV-aS-Dz7"/>
+                <constraint firstItem="OZk-Y7-3DS" firstAttribute="top" secondItem="Hdx-kG-JBL" secondAttribute="bottom" id="KsH-UC-AmI"/>
+                <constraint firstAttribute="trailing" secondItem="Hdx-kG-JBL" secondAttribute="trailing" constant="15" id="YTx-g6-bZc"/>
+                <constraint firstItem="Hdx-kG-JBL" firstAttribute="leading" secondItem="h5C-zG-MI3" secondAttribute="leading" id="alC-fL-ztp"/>
+                <constraint firstItem="K6i-Ss-JGH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="lwD-a8-izg"/>
+                <constraint firstItem="OZk-Y7-3DS" firstAttribute="trailing" secondItem="h5C-zG-MI3" secondAttribute="trailing" id="qfc-Mh-iir"/>
+                <constraint firstItem="Hdx-kG-JBL" firstAttribute="centerY" secondItem="K6i-Ss-JGH" secondAttribute="centerY" id="sE1-zb-995"/>
+                <constraint firstItem="OZk-Y7-3DS" firstAttribute="leading" secondItem="h5C-zG-MI3" secondAttribute="leading" id="xas-mv-7eK"/>
+            </constraints>
+            <size key="customSize" width="399" height="85"/>
+            <connections>
+                <outlet property="iconIm" destination="K6i-Ss-JGH" id="S6A-ct-XJ4"/>
+                <outlet property="label1" destination="h5C-zG-MI3" id="BWT-VR-gSD"/>
+                <outlet property="label2" destination="OZk-Y7-3DS" id="va2-Y3-dWO"/>
+            </connections>
+            <point key="canvasLocation" x="207.5" y="93.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="yiliaozixun" width="35" height="39"/>
+    </resources>
+</document>

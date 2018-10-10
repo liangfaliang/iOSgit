@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>baidumap</string>
+		<string>wechat</string>
+		<string>weixin</string>
+		<string>alipay</string>
+		<string>alipayshare</string>
+		<string>sinaweibohd</string>
+		<string>sinaweibo</string>
+		<string>vkauthorize</string>
+		<string>fb-messenger</string>
+		<string>kakao48d3f524e4a636b08d81b3ceb50f1003</string>
+		<string>storykompassauth</string>
+		<string>pinterestsdk.v1</string>
+		<string>kakaokompassauth</string>
+		<string>pinit</string>
+		<string>line</string>
+		<string>whatsapp</string>
+		<string>mqqwpa</string>
+		<string>instagram</string>
+		<string>fbauth2</string>
+		<string>rm226427com.mob.demoShareSDK</string>
+		<string>mqq</string>
+		<string>mqqopensdkapiV2</string>
+		<string>mqqopensdkapiV3</string>
+		<string>wtloginmqq2</string>
+		<string>mqqapi</string>
+		<string>mqqOpensdkSSoLogin</string>
+		<string>sinaweibohdsso</string>
+		<string>sinaweibosso</string>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>需要您的同意才能读取媒体资料库</string>
+</dict>
+</plist>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="104" id="KGk-i7-Jjw" customClass="SatisfactionTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="311" height="104"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="311" height="103.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toupiaozhong.png" translatesAutoresizingMaskIntoConstraints="NO" id="eDe-iQ-7lP">
+                        <rect key="frame" x="10" y="33" width="43" height="37"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOy-td-Jtl">
+                        <rect key="frame" x="63" y="51.5" width="36" height="41.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsc-T4-2u3">
+                        <rect key="frame" x="63" y="10" width="36" height="41.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="36" id="TSB-Kc-haP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20784313725490194" green="0.20784313725490194" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="lsc-T4-2u3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="6VQ-U4-2Hq"/>
+                    <constraint firstItem="dOy-td-Jtl" firstAttribute="top" secondItem="lsc-T4-2u3" secondAttribute="bottom" id="9Vd-GC-dGL"/>
+                    <constraint firstItem="lsc-T4-2u3" firstAttribute="top" secondItem="eDe-iQ-7lP" secondAttribute="top" id="BQk-V2-xaI"/>
+                    <constraint firstItem="eDe-iQ-7lP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="HS3-TP-W3p"/>
+                    <constraint firstItem="dOy-td-Jtl" firstAttribute="height" secondItem="lsc-T4-2u3" secondAttribute="height" id="I1s-ro-JMS"/>
+                    <constraint firstItem="dOy-td-Jtl" firstAttribute="bottom" secondItem="eDe-iQ-7lP" secondAttribute="bottom" id="JLT-Xf-UdU"/>
+                    <constraint firstItem="dOy-td-Jtl" firstAttribute="leading" secondItem="lsc-T4-2u3" secondAttribute="leading" id="M3P-hg-uWZ"/>
+                    <constraint firstAttribute="bottom" secondItem="dOy-td-Jtl" secondAttribute="bottom" constant="10" id="O2p-tj-XSe"/>
+                    <constraint firstItem="dOy-td-Jtl" firstAttribute="width" secondItem="lsc-T4-2u3" secondAttribute="width" id="TA9-gd-ZJq"/>
+                    <constraint firstItem="dOy-td-Jtl" firstAttribute="trailing" secondItem="lsc-T4-2u3" secondAttribute="trailing" id="Ybv-Ow-I2P"/>
+                    <constraint firstItem="eDe-iQ-7lP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gMT-MI-N8O"/>
+                    <constraint firstItem="dOy-td-Jtl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gXj-cM-fkU"/>
+                    <constraint firstItem="lsc-T4-2u3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="rXu-4c-xsC"/>
+                    <constraint firstItem="lsc-T4-2u3" firstAttribute="leading" secondItem="eDe-iQ-7lP" secondAttribute="trailing" constant="10" id="xtV-EE-kMI"/>
+                    <constraint firstAttribute="trailing" secondItem="lsc-T4-2u3" secondAttribute="trailing" constant="10" id="zi6-MF-xOo"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="6VQ-U4-2Hq"/>
+                        <exclude reference="BQk-V2-xaI"/>
+                        <exclude reference="zi6-MF-xOo"/>
+                        <exclude reference="JLT-Xf-UdU"/>
+                        <exclude reference="gXj-cM-fkU"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="iconimage" destination="eDe-iQ-7lP" id="YE5-ij-prn"/>
+                <outlet property="labwidth" destination="TSB-Kc-haP" id="1q0-qj-wUp"/>
+                <outlet property="timeLabel" destination="dOy-td-Jtl" id="Fj7-Qk-x4O"/>
+                <outlet property="titleLabel" destination="lsc-T4-2u3" id="ts2-Fn-xqa"/>
+            </connections>
+            <point key="canvasLocation" x="187.5" y="263"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="toupiaozhong.png" width="43" height="37"/>
+    </resources>
+</document>

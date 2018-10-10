@@ -1,0 +1,32 @@
+PODS:
+  - DZNEmptyDataSet (1.8.1)
+  - IQKeyboardManager (6.1.1)
+  - MJExtension (3.0.15.1)
+  - SVProgressHUD (2.2.5)
+  - "UITextView+Placeholder (1.2.1)"
+
+DEPENDENCIES:
+  - DZNEmptyDataSet
+  - IQKeyboardManager
+  - MJExtension
+  - SVProgressHUD
+  - "UITextView+Placeholder"
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DZNEmptyDataSet
+    - IQKeyboardManager
+    - MJExtension
+    - SVProgressHUD
+    - "UITextView+Placeholder"
+
+SPEC CHECKSUMS:
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  IQKeyboardManager: 79c57795f5c2408d259d37b9da2ed07efcbb5225
+  MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
+
+PODFILE CHECKSUM: 77ef0e917b192be8a94da806224c6aaabac9a49a
+
+COCOAPODS: 1.5.2

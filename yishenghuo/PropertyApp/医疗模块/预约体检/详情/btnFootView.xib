@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" misplaced="YES" id="iN0-l3-epB" customClass="btnFootView">
+            <rect key="frame" x="0.0" y="0.0" width="569" height="51"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9E3-pH-xkh">
+                    <rect key="frame" x="353" y="0.0" width="100" height="66"/>
+                    <color key="backgroundColor" red="0.98039215686274506" green="0.5607843137254902" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="oSH-9M-gKl"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="btnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="qfW-yd-qzK"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fpa-WT-MKm" customClass="YYLabel">
+                    <rect key="frame" x="10" y="0.0" width="333" height="66"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="$"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkc-YN-ypf" customClass="LPLabel">
+                    <rect key="frame" x="343" y="0.0" width="10" height="66"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="10" id="FY4-aK-sgV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="9E3-pH-xkh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2IM-7r-hbs"/>
+                <constraint firstAttribute="trailing" secondItem="9E3-pH-xkh" secondAttribute="trailing" id="6p2-tx-Tm1"/>
+                <constraint firstItem="9E3-pH-xkh" firstAttribute="leading" secondItem="fkc-YN-ypf" secondAttribute="trailing" id="Boc-0z-U9v"/>
+                <constraint firstItem="fkc-YN-ypf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WNA-Xp-DRp"/>
+                <constraint firstItem="fkc-YN-ypf" firstAttribute="leading" secondItem="Fpa-WT-MKm" secondAttribute="trailing" id="WhG-Iv-CWM"/>
+                <constraint firstAttribute="bottom" secondItem="fkc-YN-ypf" secondAttribute="bottom" id="eFA-C0-lcz"/>
+                <constraint firstAttribute="bottom" secondItem="Fpa-WT-MKm" secondAttribute="bottom" id="fRy-HC-B2j"/>
+                <constraint firstItem="Fpa-WT-MKm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="hUV-QG-LKM"/>
+                <constraint firstItem="Fpa-WT-MKm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lQm-Cu-qI3"/>
+                <constraint firstAttribute="bottom" secondItem="9E3-pH-xkh" secondAttribute="bottom" id="vQ1-lv-IyV"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="clickBtn" destination="9E3-pH-xkh" id="Xbj-Va-h1Y"/>
+                <outlet property="lpLb" destination="fkc-YN-ypf" id="8Eo-12-xbG"/>
+                <outlet property="lpLbWidth" destination="FY4-aK-sgV" id="iJx-eg-MpY"/>
+                <outlet property="priceYYlb" destination="Fpa-WT-MKm" id="XJl-SZ-NR7"/>
+            </connections>
+            <point key="canvasLocation" x="72" y="-159"/>
+        </view>
+    </objects>
+</document>

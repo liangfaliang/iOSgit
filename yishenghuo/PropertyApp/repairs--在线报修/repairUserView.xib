@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="repairUserView">
+            <rect key="frame" x="0.0" y="0.0" width="362" height="121"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weixiuyuantx_qd" translatesAutoresizingMaskIntoConstraints="NO" id="cxw-jF-bkG">
+                    <rect key="frame" x="10" y="34.5" width="52" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="52" id="6e3-Ny-tC7"/>
+                        <constraint firstAttribute="height" constant="52" id="LN1-NP-YvI"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHi-Pv-SMm">
+                    <rect key="frame" x="72" y="39.5" width="16" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gerenzhongxinjiantou" translatesAutoresizingMaskIntoConstraints="NO" id="Fak-q3-3ux">
+                    <rect key="frame" x="343" y="54" width="9" height="13"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sRV-nZ-W08">
+                    <rect key="frame" x="272" y="0.0" width="30" height="121"/>
+                    <state key="normal" image="dianhua_qd"/>
+                    <connections>
+                        <action selector="callClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="fEh-UD-r9f"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xingxing_huise" translatesAutoresizingMaskIntoConstraints="NO" id="2vm-Uq-9bO" customClass="XX_image">
+                    <rect key="frame" x="72" y="60.5" width="64" height="12"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Fak-q3-3ux" secondAttribute="trailing" constant="10" id="0cb-pY-fJW"/>
+                <constraint firstItem="BHi-Pv-SMm" firstAttribute="leading" secondItem="cxw-jF-bkG" secondAttribute="trailing" constant="10" id="4ea-qF-8G9"/>
+                <constraint firstItem="sRV-nZ-W08" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="B2B-Yn-tj5"/>
+                <constraint firstAttribute="trailing" secondItem="sRV-nZ-W08" secondAttribute="trailing" constant="60" id="Bg6-WF-iib"/>
+                <constraint firstItem="2vm-Uq-9bO" firstAttribute="leading" secondItem="BHi-Pv-SMm" secondAttribute="leading" id="EyQ-zi-8eE"/>
+                <constraint firstAttribute="bottom" secondItem="sRV-nZ-W08" secondAttribute="bottom" id="MNh-QI-reN"/>
+                <constraint firstItem="2vm-Uq-9bO" firstAttribute="top" secondItem="cxw-jF-bkG" secondAttribute="top" constant="26" id="P8l-Tc-TI7"/>
+                <constraint firstItem="BHi-Pv-SMm" firstAttribute="bottom" secondItem="cxw-jF-bkG" secondAttribute="bottom" constant="-26" id="Qcv-lE-aUx"/>
+                <constraint firstItem="cxw-jF-bkG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bPl-l9-8RS"/>
+                <constraint firstItem="cxw-jF-bkG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="dd0-i0-6pN"/>
+                <constraint firstItem="Fak-q3-3ux" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rXD-QH-UvD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="callBtn" destination="sRV-nZ-W08" id="eIt-nY-Ady"/>
+                <outlet property="nameLb" destination="BHi-Pv-SMm" id="ZfX-a1-xMC"/>
+                <outlet property="rightImage" destination="Fak-q3-3ux" id="ybq-eG-96G"/>
+                <outlet property="xxIm" destination="2vm-Uq-9bO" id="ERI-C6-Wox"/>
+            </connections>
+            <point key="canvasLocation" x="-67" y="-381.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dianhua_qd" width="30" height="30"/>
+        <image name="gerenzhongxinjiantou" width="9" height="13"/>
+        <image name="weixiuyuantx_qd" width="52" height="52"/>
+        <image name="xingxing_huise" width="64" height="12"/>
+    </resources>
+</document>

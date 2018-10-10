@@ -1,0 +1,215 @@
+//
+//  property.pch
+//  PropertyApp
+//
+//  Created by 梁法亮 on 16/7/5.
+//  Copyright © 2016年 wanwuzhishang. All rights reserved.
+//
+
+#ifndef property_pch
+
+
+#define property_pch
+
+#import "UIView+TransitionAnimation.h"
+#import "BaseViewController.h"
+#import "MBProgressHUD.h"
+#import "UIImage+Extension.h"
+#import <UIKit/UIKit.h>
+#import "NSString+File.h"
+#import "NSMutableAttributedString+size.h"
+#import "NSString+selfSize.h"
+#import "UIButton+Extension.h"
+#import "UIImage+Extension.h"
+#import "UIImage+Extra.h"
+#import "UILabel+ContentSize.h"
+#import "UIView+Extension.h"
+#import "MBProgressHUD.h"
+#import "LFLLogin.h"
+#import "LFLCustom.h"
+#import "LFLaccount.h"
+#import "LFLHttpTool.h"
+#import "Masonry.h"
+#import "NSData+string.h"
+#import "ServiceAlipay_Order.h"
+#import "UserModel.h"
+#import "MJRefresh.h"
+#import "UIView+Manipulation.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+GIF.h"
+#import "SDImageCache.h"
+#import "UINavigationBar+ST.h"
+#import "SynthesizeSingleton.h"//快速声明和实现单例的
+#import "AppFMDBManager.h"//数据库
+#import "ShareSingledelegate.h"//分享
+#import "UINavigationController+FDFullscreenPopGesture.h"//侧滑返回
+#import "UINavigationController+TZPopGesture.h"
+#import "STPhotoBroswer.h"//查看图片
+#import "UIButton+control.h"//button重复点击
+#import "IndexBtn.h"
+#import "baseTableview.h"
+#import "IndexBtn.h"
+#import "WKWebView+LookImage.h"
+#import "IndexBtn.h"
+#import "UIScrollView+EmptyDataSet.h"
+#import "ImRightBtn.h"//右图片
+#import "MJExtension.h"
+#import "UIColor+AddColor.h"
+#import "UITextView+Placeholder.h"
+#import "BasicTableViewCell.h"
+#define LFLsecretKey @"0TfMO854xwrgBTdgQcikmfew"
+// ===================== 弱指针 =====================
+#define WeakSelf(type) __weak typeof(type) weak##type = type
+
+#define WEAKSELF typeof(self) __weak weakSelf = self
+#define STRONGSELF typeof(self) __strong strongSelf = self;
+//手机系统版本
+#define iOS6 ([[UIDevice currentDevice].systemVersion doubleValue] <= 6.0)
+#define iOS11 ([[UIDevice currentDevice].systemVersion doubleValue] >= 11.0)
+
+//机型
+#define IS_IPHONE_6_PLUS ([[UIScreen mainScreen]bounds].size.width*[UIScreen mainScreen].scale >= 960 )
+#define kDevice_Is_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+//该应用程序版本
+#define versionKey  @"CFBundleVersion"
+#define currentVerson [NSBundle mainBundle].infoDictionary[versionKey]
+//当前版本
+#define UserDefault [NSUserDefaults standardUserDefaults]
+#define lastVersion [[NSUserDefaults standardUserDefaults] objectForKey:versionKey]
+#define NSStringWithFormat(a,b) [NSString stringWithFormat:@"%@%@",a,b]
+
+#define Colorrgb [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0]
+
+#define SCREEN [[UIScreen mainScreen] bounds]
+
+#define screenW [UIScreen mainScreen].bounds.size.width
+#define screenH [UIScreen mainScreen].bounds.size.height
+#define pageMenuH 40
+#define NaviH (screenH == 812 ? 88 : 64) // 812是iPhoneX的高度
+#define TabH (screenH > 736 ? 83.0 : 49.0)
+#define scrollViewHeight (screenH-NaviH-pageMenuH)
+
+//打印日志
+#ifdef DEBUG
+#define LFLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+#else
+#define LFLog(...)
+#endif
+//
+#ifdef DEBUG
+#define  NSLog(...) printf("%f %s\n",[[NSDate date]timeIntervalSince1970],[[NSString stringWithFormat:__VA_ARGS__]UTF8String]);
+#else
+#define NSLog( ... )
+#endif
+//字符串是否为空
+#define lStringIsEmpty(str) ([str isKindOfClass:[NSNull class]] || str == nil || [str length] < 1 ? YES : NO )
+//数组是否为空
+#define lArrayIsEmpty(array) (array == nil || [array isKindOfClass:[NSNull class]] || array.count == 0)
+//字典是否为空
+#define lDictIsEmpty(dic) (dic == nil || [dic isKindOfClass:[NSNull class]] || dic.allKeys == 0)
+
+//颜色
+#define JHColoralpha(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+#define JHColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define JHRandomColor JHColor(arc4random_uniform(256),arc4random_uniform(256),arc4random_uniform(256))
+#define JHMaincolor JHColor(225, 0, 67)//主色
+//#define JHMaincolor JHColor(255, 86, 18)//主色
+//#define JHAssistColor JHColor(255, 79, 0)//辅助色
+#define JHAssistColor JHColor(225, 0, 67)//辅助色
+#define JHAssistRedColor JHColor(255, 79, 0)//辅助色
+#define JHshopMainColor JHColor(255, 79, 0)//商城主色
+#define JHMedicalColor JHColor(54, 159, 0)//医疗主色//(94, 178, 48)
+#define JHMedicalAssistColor JHColor(253, 161, 0)//医疗辅助色
+#define JHBorderColor JHColor(229, 229, 229)
+#define JHbgColor JHColor(240, 240, 240)
+
+
+#define JHmiddleColor JHColor(102, 102, 102)
+#define JHdeepColor JHColor(51, 51, 51)
+#define JHsimpleColor JHColor(151, 151, 151)
+
+//屏幕的宽度
+#define JHScreenBounds [UIScreen mainScreen].bounds
+#define JHScreenW JHScreenBounds.size.width
+#define JHScreenH JHScreenBounds.size.height
+//导航栏的高度（加上状态栏）
+#define JHNavBarH 64
+//tabbar的高度
+#define JHTabbarH 49
+
+//适配屏幕大小
+#define FourS JHScreenH<=480
+#define FiveS JHScreenH<=568 && JHScreenH>480
+#define Six   JHScreenH > 568 && JHScreenH <= 667
+#define SixP  JHScreenH > 667
+
+//根据屏幕大小比例得出的大小
+#define HeightProportion(y) y / 667.0
+#define RealHeight(y) HeightProportion(y) * JHScreenH
+
+#define WidthProportion(x) x / 375.0
+#define RealWidth(x) WidthProportion(x) * JHScreenW
+
+
+//按钮的原角度
+#define ButtonCornerRadius (35 * 0.5)
+#define ButtonH 35
+
+
+//偏好
+#define userDefaults [NSUserDefaults standardUserDefaults]//沙盒
+#define Notification [NSNotificationCenter defaultCenter]//通知
+//网络监控问题
+#define NetworkReachability @"NetworkReachability"
+#define NetworkReachabilityUnknown @"NetworkReachabilityUnknown"
+#define NetworkReachabilityNotReachable @"NetworkReachabilityNotReachable"
+#define NetworkReachabilityWWAN @"NetworkReachabilityWWAN"
+#define NetworkReachabilityWIFI @"NetworkReachabilityWIFI"
+#define NetworkNotification @"NetworkNotification"
+
+//抽取一个系统字体
+#define SYS_FONT(x) [UIFont systemFontOfSize:x]
+#define SYS_FONTBold(x) [UIFont fontWithName:@"Helvetica-Bold" size:x]
+//登陆成功
+#define USERNotifiLogin @"USERNotifiLogin"
+//注销成功
+#define USERNotifiCancel @"USERNotifiCancel"
+//业主信息
+#define USERInfo @"USERInfo"
+//修改信息
+#define USERInfoChange @"USERInfoChange"
+//沙盒相关路径
+//document
+#define Document [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject]
+//Caches
+#define Caches     [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject]
+
+//图片显示模式
+#define PictureModel @"PictureModel"
+//智能模式
+#define capacityModel @"capacityModel"
+//低质量
+#define LowQuality @"LowQuality"
+//高质量
+#define HeigthQuality @"HeigthQuality"
+
+//文件保存字典key
+#define FliePathKey  @"filepath"
+#define FileSizeKey  @"filesize"
+#define FlieNameKey  @"filename"
+#define ImagePathKey  @"ImagePathKey"
+#define FlieImageKey  @"FlieImage"
+#define ImageNameKey  @"ImageNameKey"
+#define ImageKey  @"ImageKey"
+
+//log日志
+#define LookAPILogType  @"LookAPILogType"
+#define IsDisplayApiLog  @"IsDisplayApiLog"
+#define ApiReturnedMessagesType  @"ApiReturnedMessagesType"
+
+//接口版本号
+#define APIversion @"8"
+//门禁相关参数
+#define Access_TokenKey @"Access_Token"
+#define Access_CodeKey @"Access_Code"
+#endif /* property_pch */

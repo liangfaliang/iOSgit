@@ -164,7 +164,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LoginViewController);
 //                make.size.mas_equalTo(image.size);
 //            }];
             UIButton *subbtn = [[UIButton alloc]init];
-            [subbtn setImage:[UIImage imageNamed:@"lijidenglu"] forState:UIControlStateNormal];
+            [subbtn setBackgroundImage:[UIImage imageNamed:@"denglukuang"] forState:UIControlStateNormal];
+            [subbtn setTitle:@"登录" forState:UIControlStateNormal];
+            [subbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            subbtn.titleLabel.font = [UIFont systemFontOfSize:15];
             [subbtn addTarget:self action:@selector(subbuttonclick:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:subbtn];
             [subbtn mas_makeConstraints:^(MASConstraintMaker *make) {

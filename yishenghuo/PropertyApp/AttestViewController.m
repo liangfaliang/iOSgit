@@ -60,7 +60,11 @@
 //    self.automaticallyAdjustsScrollViewInsets = YES;
     self.lb = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.buttonCode.frame.size.width, self.buttonCode.frame.size.height)];
     _lb.textColor = JHMaincolor;
+    _lb.textAlignment = NSTextAlignmentCenter;
     _lb.text = @"获取验证码";
+    _lb.layer.cornerRadius = 3;
+    [_lb setViewBorderColor:JHAssistRedColor borderWidth:1];
+
     _lb.font = [UIFont systemFontOfSize:12];
     [self.buttonCode addSubview:self.lb];
     [_lb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -168,9 +172,9 @@
     
     //    for (int i = 0; i<2; i++) {
     UIButton * button= [[UIButton alloc]initWithFrame:CGRectMake(20, recordView.frame.size.height +10 , firstview.frame.size.width - 40, 40)];
-    [button.layer setMasksToBounds:YES];
-    [button.layer setCornerRadius:20.0];
-    button.backgroundColor = JHMaincolor;
+    [button setBackgroundImage:[UIImage imageNamed:@"denglukuang"] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:15];
     [button setTitle:titlearray[1] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(AttestbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
     button.tag = 12;
@@ -186,12 +190,11 @@
     self.submitView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN.size.height/2, SCREEN.size.width, 40)];
     UIButton *submitBtn = [[UIButton alloc]init];
     submitBtn.frame = CGRectMake(10, 0, SCREEN.size.width-20, 40);
-    [submitBtn.layer setMasksToBounds:YES];
-    [submitBtn.layer setCornerRadius:20.0];
-    [submitBtn setBackgroundColor:JHMaincolor];
+    [submitBtn setBackgroundImage:[UIImage imageNamed:@"denglukuang"] forState:UIControlStateNormal];
     [submitBtn setTitle:@"提  交" forState:UIControlStateNormal];
-    [submitBtn setTitle:@"提  交" forState:UIControlStateSelected];
-    [submitBtn setTintColor:[UIColor whiteColor]];
+    [submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    submitBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+
     [submitBtn addTarget:self action:@selector(submitClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.submitView addSubview:submitBtn];
     [self.view addSubview:self.submitView];
@@ -438,6 +441,7 @@
         NSString *str = [NSString stringWithFormat:@"%@",response[@"status"][@"succeed"]];
         if ([str isEqualToString:@"1"]) {
             NSLog(@"SUCCEED!");
+            [_lb setViewBorderColor:JHAssistRedColor borderWidth:0];
             __block int timeout=60; //倒计时时间
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -447,8 +451,9 @@
                     dispatch_source_cancel(_timer);
                     dispatch_async(dispatch_get_main_queue(), ^{
                         //设置界面的按钮显示 根据自己需求设置
-                        //[bt setTitle:@"发送验证码" forState:UIControlStateNormal];
+                        _lb.textColor = JHMaincolor;
                         _lb.text = @"获取验证码";
+                        [_lb setViewBorderColor:JHAssistRedColor borderWidth:1];
                         _lb.textColor = JHMaincolor;
                         bt.userInteractionEnabled = YES;
                     });

@@ -213,34 +213,36 @@
 
 //警告框
 -(void)createAlertion{
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        [self alertController:@"提示" prompt:@"此应用没有权限访问您的照片或视频，您可以在”隐私设置“中启用访问" sure:@"确定" cancel:@"取消" success:^{
+        } failure:nil];
+        return;
+    }
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"请选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"照相" otherButtonTitles:@"图库", nil];
-    [sheet showInView:self.view];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self actionSheet:0];
+        
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"图库" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self actionSheet:1];
+        
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     
-    
+    [self presentViewController:alertController animated:YES completion:nil];
     
 }
 
 
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (buttonIndex == 2)return;
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        [self alertController:@"提示" prompt:@"此应用没有权限访问您的照片或视频，您可以在”隐私设置“中启用访问" sure:@"确定" cancel:@"取消" success:^{
-            
-        } failure:^{
-            
-        }];
-        return;
-    }
+-(void)actionSheet:(NSInteger)buttonIndex{
+
     UIImagePickerController *pic = [[UIImagePickerController alloc]init];
     pic.delegate = self;
     //    [pic setDelegate:self];
     //允许编辑图片
     pic.allowsEditing = YES;
-    
-    
     if (buttonIndex == 0) {
         
         pic.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -250,7 +252,6 @@
         pic.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         
     }
-    
     //显示控制器
     [self presentViewController:pic animated:YES completion:nil];
 }

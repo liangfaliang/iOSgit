@@ -35,7 +35,7 @@
 }
 -(NSMutableArray *)subViewArray{
     if (_subViewArray == nil) {
-        _subViewArray = [[NSMutableArray alloc]init];;
+        _subViewArray = [[NSMutableArray alloc]init];
     }
     return _subViewArray;
 }

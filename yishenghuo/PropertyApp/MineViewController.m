@@ -1037,7 +1037,6 @@
     } else {
         [self scrollViewDidScroll:self.tableView];
     }
-
 }
 
 

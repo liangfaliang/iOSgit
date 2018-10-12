@@ -133,7 +133,7 @@
     ShopOtherTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetupPageViewController"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.MustImHeight.constant = 0;
-
+    cell.contentLb.textColor = JHmiddleColor;
     if (indexPath.section == 0) {
         cell.rigthtIm.hidden = NO;
         cell.nameLabel.text = self.array1[indexPath.row];
@@ -156,8 +156,10 @@
         cell.contentLb.numberOfLines = 0;
         if (self.officialArr.count) {
             if (indexPath.row == 1) {
+                cell.contentLb.textColor = JHAssistRedColor;
                 cell.contentLb.text = self.officialArr[0][@"site_url"];
             }else if (indexPath.row == 0){
+                cell.contentLb.textColor = JHAssistRedColor;
                 cell.contentLb.text = self.officialArr[0][@"service_phone"];
             }else{
                 NSDictionary *dict = [[NSBundle mainBundle]infoDictionary];
@@ -173,11 +175,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
         if (self.officialArr.count) {
-
           if (indexPath.row == 0) {
-              NSString *recid =  self.officialArr[0][@"service_phone"];
-              if (recid) {
-                  if (recid.length) {
+              __block NSString *recid =  self.officialArr[0][@"service_phone"];
+              if (recid && recid.length) {
+                  [self alertController:[NSString stringWithFormat:@"确认拨打%@",recid] prompt:@"" sure:@"确定" cancel:@"取消" success:^{
                       LFLog(@"recid:%@",recid);
                       recid = [recid stringByReplacingOccurrencesOfString:@"-" withString:@""];
                       NSString *tell = [NSString stringWithFormat:@"telprompt://%@",recid];
@@ -188,7 +189,7 @@
                       }else{
                           [[UIApplication sharedApplication] openURL:url];
                       }
-                  }
+                  } failure:nil];
               }
           }else if (indexPath.row == 1){
               OfficialWebviewViewController *web = [[OfficialWebviewViewController alloc]init];
@@ -224,8 +225,11 @@
             NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
             [[UIApplication sharedApplication] openURL:url];
         }else if (indexPath.row == 2){
-            [self presentLoadingStr:@"清除缓存"];
-            [self clearFile];
+            [self alertController:@"提示" prompt:@"确认清除本地缓存" sure:@"确定" cancel:@"取消" success:^{
+                [self presentLoadingStr:@"清除缓存"];
+                [self clearFile];
+            } failure:nil];
+
         }
 
     }

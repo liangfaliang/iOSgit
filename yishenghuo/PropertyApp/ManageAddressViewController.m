@@ -37,9 +37,11 @@
     return _dataArray;
 }
 -(void)createFootveiw{
-    UIButton *footbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, SCREEN.size.height - 50, SCREEN.size.width, 50)];
-    footbtn.backgroundColor = JHshopMainColor;
-    [footbtn setTitle:@"添加新地址" forState:UIControlStateNormal];
+    UIButton *footbtn = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN.size.height - 60, SCREEN.size.width - 20, 50)];
+    [footbtn setBackgroundImage:[UIImage imageNamed:@"denglukuang"] forState:UIControlStateNormal];
+    [footbtn setTitle:@"+添加新地址" forState:UIControlStateNormal];
+    [footbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    footbtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [footbtn addTarget:self action:@selector(footbtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:footbtn];
 
@@ -109,8 +111,10 @@
             [self.navigationController pushViewController:add animated:YES];
         
         }else if (index == 2){//删除
-        
-            [self UploadDataDeleteaddress:dt[@"id"]];
+            [self alertController:@"提示" prompt:@"确定要删除地址吗？" sure:@"确定" cancel:@"取消" success:^{
+                [self UploadDataDeleteaddress:dt[@"id"]];
+            } failure:nil];
+            
         
         }
      }];

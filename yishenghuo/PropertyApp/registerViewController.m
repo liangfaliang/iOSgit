@@ -133,15 +133,17 @@
         }];
         if (i == (numi + 1)) {
             UIButton *setBtn = [[UIButton alloc]init];
-            [setBtn setImage:[UIImage imageNamed:@"huoquyanzhengma"] forState:UIControlStateNormal];
-            [setBtn setTitle:@"重新获取" forState:UIControlStateSelected];
+            [setBtn setTitleColor:JHMaincolor forState:UIControlStateNormal];
+            [setBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+            setBtn.layer.cornerRadius = 3;
+            [setBtn setViewBorderColor:JHAssistRedColor borderWidth:1];
             setBtn.titleLabel.font = [UIFont systemFontOfSize: 12.0];
-            [setBtn setTitleColor:JHMaincolor forState:UIControlStateSelected];
             [setBtn addTarget:self action:@selector(sendClick1:) forControlEvents:UIControlEventTouchUpInside];
             [view1 addSubview:setBtn];
             [setBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(view1.mas_centerY);
                 make.right.offset(-5);
+                make.width.offset(75);
                 
                 
             }];
@@ -165,11 +167,10 @@
             tf.secureTextEntry =YES;
             
             UIButton *subbtn = [[UIButton alloc]init];
-            if (self.isAtt) {
-                [subbtn setImage:[UIImage imageNamed:@"zhucerenzheng"] forState:UIControlStateNormal];
-            }else{
-                [subbtn setImage:[UIImage imageNamed:@"zhuce"] forState:UIControlStateNormal];
-            }
+            [subbtn setBackgroundImage:[UIImage imageNamed:@"denglukuang"] forState:UIControlStateNormal];
+            [subbtn setTitle:self.isAtt ? @"注册认证" : @"注册" forState:UIControlStateNormal];
+            [subbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            subbtn.titleLabel.font = [UIFont systemFontOfSize:15];
             [subbtn addTarget:self action:@selector(subbuttonclick:) forControlEvents:UIControlEventTouchUpInside];
             [_backview addSubview:subbtn];
             [subbtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -257,7 +258,7 @@
         if ([str isEqualToString:@"1"]) {
             NSLog(@"SUCCEED!");
             UIButton *bt = (UIButton *)sender;
-            
+            [bt setViewBorderColor:JHAssistRedColor borderWidth:0];
             __block int timeout=60; //倒计时时间
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -267,11 +268,9 @@
                 if(timeout<=0){ //倒计时结束，关闭
                     dispatch_source_cancel(_timer);
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [bt setImage:nil forState:UIControlStateNormal];
-                        //设置界面的按钮显示 根据自己需求设置
-                        
-                        //                        [bt setTitle:@"发送验证码" forState:UIControlStateNormal];
-                        //                        [bt setTitleColor:JHMaincolor forState:UIControlStateNormal];
+                        [bt setViewBorderColor:JHAssistRedColor borderWidth:1];
+                        [bt setTitle:@"获取验证码" forState:UIControlStateNormal];
+                        [bt setTitleColor:JHMaincolor forState:UIControlStateNormal];
                         bt.userInteractionEnabled = YES;
                         bt.selected = YES;
                     });
@@ -295,6 +294,7 @@
             dispatch_resume(_timer);
             
         }else {
+            [sender setViewBorderColor:JHAssistRedColor borderWidth:1];
             sender.selected = YES;
             sender.userInteractionEnabled = YES;
             [sender setTitle:@"重新获取" forState:UIControlStateSelected];

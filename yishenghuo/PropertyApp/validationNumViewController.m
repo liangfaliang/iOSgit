@@ -116,14 +116,16 @@
             UIButton *eyeimageView = [[UIButton alloc]init];
             //            [eyeimageView setImage:[UIImage imageNamed:@"huoquyanzhengma"] forState:UIControlStateNormal];
             [eyeimageView setTitleColor:JHMaincolor forState:UIControlStateNormal];
-            [eyeimageView setTitle:@"发送验证码" forState:UIControlStateNormal];
+            [eyeimageView setTitle:@"获取验证码" forState:UIControlStateNormal];
+            eyeimageView.layer.cornerRadius = 3;
+            [eyeimageView setViewBorderColor:JHAssistRedColor borderWidth:1];
             eyeimageView.titleLabel.font = [UIFont systemFontOfSize: 12.0];
             [eyeimageView addTarget:self action:@selector(sendClick:) forControlEvents:UIControlEventTouchUpInside];
             [view1 addSubview:eyeimageView];
             [eyeimageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(view1.mas_centerY);
                 make.right.offset(-5);
-                
+                make.width.offset(75);
                 
             }];
             [view1 addSubview:eyeimageView];
@@ -149,7 +151,9 @@
             }];
             
             UIButton *subbtn = [[UIButton alloc]init];
-            [subbtn setImage:[UIImage imageNamed:@"tijiao"] forState:UIControlStateNormal];
+            [subbtn setBackgroundImage:[UIImage imageNamed:@"denglukuang"] forState:UIControlStateNormal];
+            [subbtn setTitle:@"提交" forState:UIControlStateNormal];
+            [subbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [subbtn addTarget:self action:@selector(pwbtnclick:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:subbtn];
             [subbtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -204,6 +208,7 @@
             sender.userInteractionEnabled = YES;
             [self presentLoadingTips:@"验证码已发送~~"];
             UIButton *bt = (UIButton *)sender;
+            [bt setViewBorderColor:JHAssistRedColor borderWidth:0];
             __block int timeout=60; //倒计时时间
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -214,7 +219,7 @@
                     dispatch_source_cancel(_timer);
                     dispatch_async(dispatch_get_main_queue(), ^{
                         //设置界面的按钮显示 根据自己需求设置
-                        
+                        [bt setViewBorderColor:JHAssistRedColor borderWidth:1];
                         [bt setTitle:@"获取验证码" forState:UIControlStateNormal];
                         [bt setTitleColor:JHMaincolor forState:UIControlStateNormal];
                         bt.userInteractionEnabled = YES;

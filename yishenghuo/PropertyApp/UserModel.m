@@ -342,7 +342,7 @@
 #pragma mark  runtime跳转页面
 -(UIViewController *)runtimePushviewController:(NSDictionary *)dict controller:(UIViewController *)vc{
     UIViewController *board  = nil;
-    NSString *keywords = [NSString stringWithFormat:@"%@",dict[@"type"]];
+//    NSString *keywords = [NSString stringWithFormat:@"%@",dict[@"type"]];
 //    if ([keywords isEqualToString:@"runtime"]) {//runtime跳转
         // 类名
         NSString *class =[NSString stringWithFormat:@"%@", dict[@"ios_class"]];

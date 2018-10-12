@@ -9,5 +9,7 @@
 #import "ImLbModel.h"
 
 @implementation ImLbModel
-
++(NSDictionary *)mj_objectClassInArray{
+    return @{@"child":@"ImLbModel"};
+}
 @end

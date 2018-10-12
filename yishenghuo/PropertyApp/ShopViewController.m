@@ -269,7 +269,6 @@
     [self.collectionview registerNib:[UINib nibWithNibName:@"ShopListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"shopShopListCollectionViewCell"];//列表
     [self.view addSubview:self.collectionview];
     
-    
 }
 
 

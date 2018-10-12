@@ -20,6 +20,7 @@
 #import "MedicalViewController.h"
 #import "ShopHomeViewController.h"
 #import "SanjinHomeViewController.h"//三金
+#import "MineNewViewController.h"
 @interface LFLTabBarViewController ()<UITabBarControllerDelegate>
 //创建一个自定制的TabBar
 @property(nonatomic, strong) LFLTabbar * customTabBar;
@@ -72,11 +73,9 @@
 //    BBShomeViewController * bbs = [[BBShomeViewController alloc] init];
 //    [self addOneChildVC:bbs title:@"互助共建"norImageName:@"linlihudong" selectedImageName:@"linlihudongdianji"];
     //2.我的
-    MineViewController * mine = [[MineViewController alloc] init];
+    MineNewViewController * mine = [[MineNewViewController alloc] init];
     [self addOneChildVC:mine title:@"我" norImageName:@"gerenfuwu" selectedImageName:@"gerenfuwudianji"];
 
-   
-    
 }
 
 

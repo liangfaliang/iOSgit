@@ -82,21 +82,22 @@
     UIView *footview = [[UIView alloc]init];
     UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 
-    [submitBtn.layer setMasksToBounds:YES];
-    [submitBtn.layer setCornerRadius:5.0];
-    [submitBtn setBackgroundColor:JHshopMainColor];
-    if (self.address_id) {
-    [submitBtn setTitle:@"保存地址" forState:UIControlStateNormal];
-    }else{
-     [submitBtn setTitle:@"添加地址" forState:UIControlStateNormal];   
-    }
+//    if (self.address_id) {
+//    [submitBtn setTitle:@"保存地址" forState:UIControlStateNormal];
+//    }else{
+//     [submitBtn setTitle:@"添加地址" forState:UIControlStateNormal];
+//    }
+    [submitBtn setBackgroundImage:[UIImage imageNamed:@"denglukuang"] forState:UIControlStateNormal];
+    [submitBtn setTitle:@"确定" forState:UIControlStateNormal];
+    [submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    submitBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     
     [submitBtn setTintColor:[UIColor whiteColor]];
     [submitBtn addTarget:self action:@selector(addresssubmitClick:) forControlEvents:UIControlEventTouchUpInside];
     [footview addSubview:submitBtn];
     [submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(50);
-        make.right.offset(-50);
+        make.left.offset(20);
+        make.right.offset(-20);
         make.centerY.equalTo(footview.mas_centerY);
         make.height.offset(40);
     }];
@@ -167,6 +168,7 @@
             tf.clearButtonMode = UITextFieldViewModeWhileEditing;
             tf.font = [UIFont systemFontOfSize:14];
             tf.textColor = JHColor(102, 102, 102);
+            tf.placeholder = indexPath.row == 0 ? @"请输入姓名" :(indexPath.row == 1 ? @"请输入电话号码" :@"请输入详细地址");
             [cell.contentView addSubview:tf];
             [tf mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.offset(-10);
@@ -192,8 +194,6 @@
         if (loactionlabel == nil) {
             loactionlabel = [[UILabel alloc]init];
             loactionlabel.tag = 11;
-      
-            loactionlabel.textColor = JHColor(51, 51, 51);
             loactionlabel.font = [UIFont systemFontOfSize:15];
             [cell.contentView addSubview:loactionlabel];
             [loactionlabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -202,6 +202,7 @@
                 make.left.equalTo(namelabel.mas_right);
             }];
         }
+        loactionlabel.textColor = JHdeepColor;
         if (self.region) {
             loactionlabel.text = self.region;
         }else{
@@ -210,6 +211,9 @@
                 NSDictionary *dt = self.addressArr[0];
                 loactionlabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",dt[@"country_name"],dt[@"province_name"],dt[@"city_name"],dt[@"district_name"]];
                 self.regionid = [NSString stringWithFormat:@"%@,%@,%@,%@",dt[@"country"],dt[@"province"],dt[@"city"],dt[@"district"]];
+            }else{
+                loactionlabel.textColor = JHColor(200, 200, 200);
+                loactionlabel.text = @"请选择";
             }
         
         }

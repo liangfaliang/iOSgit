@@ -689,12 +689,17 @@
 		841B83F021056FAA00DAA9DD /* FileIListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B83EE21056FAA00DAA9DD /* FileIListTableViewCell.m */; };
 		841B83F121056FAA00DAA9DD /* FileIListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841B83EF21056FAA00DAA9DD /* FileIListTableViewCell.xib */; };
 		841B83F42105A0BF00DAA9DD /* MyFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B83F32105A0BF00DAA9DD /* MyFileModel.m */; };
+		841F1EAF216F3ACE00152EC8 /* MineHeaderNewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F1EAD216F3ACE00152EC8 /* MineHeaderNewView.m */; };
+		841F1EB0216F3ACE00152EC8 /* MineHeaderNewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841F1EAE216F3ACE00152EC8 /* MineHeaderNewView.xib */; };
 		8427A5EA213945E7003EA979 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427A5E9213945E7003EA979 /* AlertView.m */; };
 		842A13052142610F000801AD /* MeGoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A13042142610F000801AD /* MeGoodModel.m */; };
 		842A130821426829000801AD /* SanjinListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A130721426829000801AD /* SanjinListViewController.m */; };
 		842A130C214274D9000801AD /* ServiceHotlineListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A130B214274D9000801AD /* ServiceHotlineListViewController.m */; };
 		842A1311214276D7000801AD /* ServiceHotlineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A130F214276D7000801AD /* ServiceHotlineTableViewCell.m */; };
 		842A1312214276D7000801AD /* ServiceHotlineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842A1310214276D7000801AD /* ServiceHotlineTableViewCell.xib */; };
+		84523D99216EFB58000F21E7 /* MineNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84523D98216EFB58000F21E7 /* MineNewViewController.m */; };
+		84523D9F216EFD51000F21E7 /* MineMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84523D9D216EFD51000F21E7 /* MineMenuTableViewCell.m */; };
+		84523DA0216EFD51000F21E7 /* MineMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84523D9E216EFD51000F21E7 /* MineMenuTableViewCell.xib */; };
 		845909FB210979ED0031F3EE /* DottedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845909FA210979ED0031F3EE /* DottedView.m */; };
 		845909FE2109AC000031F3EE /* FileCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 845909FD2109AC000031F3EE /* FileCenterModel.m */; };
 		84590A022109B3DB0031F3EE /* CenterSelectDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84590A002109B3DB0031F3EE /* CenterSelectDateViewController.m */; };
@@ -2145,6 +2150,9 @@
 		841B83EF21056FAA00DAA9DD /* FileIListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileIListTableViewCell.xib; sourceTree = "<group>"; };
 		841B83F22105A0BF00DAA9DD /* MyFileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFileModel.h; sourceTree = "<group>"; };
 		841B83F32105A0BF00DAA9DD /* MyFileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFileModel.m; sourceTree = "<group>"; };
+		841F1EAC216F3ACE00152EC8 /* MineHeaderNewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeaderNewView.h; sourceTree = "<group>"; };
+		841F1EAD216F3ACE00152EC8 /* MineHeaderNewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeaderNewView.m; sourceTree = "<group>"; };
+		841F1EAE216F3ACE00152EC8 /* MineHeaderNewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineHeaderNewView.xib; sourceTree = "<group>"; };
 		8427A5E8213945E7003EA979 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		8427A5E9213945E7003EA979 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		842A13032142610F000801AD /* MeGoodModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeGoodModel.h; sourceTree = "<group>"; };
@@ -2156,6 +2164,11 @@
 		842A130E214276D7000801AD /* ServiceHotlineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceHotlineTableViewCell.h; sourceTree = "<group>"; };
 		842A130F214276D7000801AD /* ServiceHotlineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceHotlineTableViewCell.m; sourceTree = "<group>"; };
 		842A1310214276D7000801AD /* ServiceHotlineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceHotlineTableViewCell.xib; sourceTree = "<group>"; };
+		84523D97216EFB58000F21E7 /* MineNewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineNewViewController.h; sourceTree = "<group>"; };
+		84523D98216EFB58000F21E7 /* MineNewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineNewViewController.m; sourceTree = "<group>"; };
+		84523D9C216EFD51000F21E7 /* MineMenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineMenuTableViewCell.h; sourceTree = "<group>"; };
+		84523D9D216EFD51000F21E7 /* MineMenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineMenuTableViewCell.m; sourceTree = "<group>"; };
+		84523D9E216EFD51000F21E7 /* MineMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineMenuTableViewCell.xib; sourceTree = "<group>"; };
 		845909F9210979ED0031F3EE /* DottedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DottedView.h; sourceTree = "<group>"; };
 		845909FA210979ED0031F3EE /* DottedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DottedView.m; sourceTree = "<group>"; };
 		845909FC2109AC000031F3EE /* FileCenterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileCenterModel.h; sourceTree = "<group>"; };
@@ -3587,6 +3600,9 @@
 		8126B0481D2A6716008470A5 /* 内部管理 */ = {
 			isa = PBXGroup;
 			children = (
+				84523D9B216EFD29000F21E7 /* view */,
+				84523D97216EFB58000F21E7 /* MineNewViewController.h */,
+				84523D98216EFB58000F21E7 /* MineNewViewController.m */,
 				8126B0491D2A673B008470A5 /* MineViewController.h */,
 				8126B04A1D2A673B008470A5 /* MineViewController.m */,
 				81A71FF6209017EB00305C97 /* MineHeaderView.h */,
@@ -5670,6 +5686,19 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		84523D9B216EFD29000F21E7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				841F1EAC216F3ACE00152EC8 /* MineHeaderNewView.h */,
+				841F1EAD216F3ACE00152EC8 /* MineHeaderNewView.m */,
+				841F1EAE216F3ACE00152EC8 /* MineHeaderNewView.xib */,
+				84523D9C216EFD51000F21E7 /* MineMenuTableViewCell.h */,
+				84523D9D216EFD51000F21E7 /* MineMenuTableViewCell.m */,
+				84523D9E216EFD51000F21E7 /* MineMenuTableViewCell.xib */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		845ADDCC21312ACB000F46A8 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -6263,7 +6292,9 @@
 				81F69C2A1D936B8F00B62828 /* telephone@3x.png in Resources */,
 				81F69C291D936B8F00B62828 /* telephone@2x.png in Resources */,
 				84AD311C2137D5100001D823 /* GNRCartHeader.xib in Resources */,
+				841F1EB0216F3ACE00152EC8 /* MineHeaderNewView.xib in Resources */,
 				81C565AA208892D30027C2B3 /* HealthRecordHeaderview.xib in Resources */,
+				84523DA0216EFD51000F21E7 /* MineMenuTableViewCell.xib in Resources */,
 				84A81855212188400014B4D6 /* PaymentAlreadyTableViewCell.xib in Resources */,
 				84BE33E92101D71900258347 /* TextFiledLableTableViewCell.xib in Resources */,
 				81C407351F7515FD008629A9 /* ShareSDKConfigFile.bundle in Resources */,
@@ -6439,6 +6470,7 @@
 				81570CA5208B17DB001F51E2 /* ChildCareHomeview.m in Sources */,
 				84AD314E2137D55A0001D823 /* GNRGoodsGroup.m in Sources */,
 				846C0B972130141700FB7B50 /* HealthPostpartum42ListController.m in Sources */,
+				841F1EAF216F3ACE00152EC8 /* MineHeaderNewView.m in Sources */,
 				8192B6E6209AB43C001C083D /* ActivityHomeViewController.m in Sources */,
 				817ED4882021904200360BB6 /* progressView.m in Sources */,
 				81F7EB711D891E3700891D7B /* Order.m in Sources */,
@@ -6488,6 +6520,7 @@
 				8126B03B1D2A5B8C008470A5 /* LFLNavigationController.m in Sources */,
 				8109523921076D5300872E9E /* CollectioncellTableViewCell.m in Sources */,
 				810929B41D2B59E5007294FB /* View+MASAdditions.m in Sources */,
+				84523D99216EFB58000F21E7 /* MineNewViewController.m in Sources */,
 				81BC73D22089B0910057AF9D /* DoctorInfoViewController.m in Sources */,
 				81D4C72D1FF5E43800B04B6C /* NSBundle+TZImagePicker.m in Sources */,
 				8118F2C61D2CA8A800691278 /* AppFMDBTool.m in Sources */,
@@ -6929,6 +6962,7 @@
 				84D1BBAB211056F900F3B3AB /* HealthPostpartum42ViewController.m in Sources */,
 				8184284A207EFA6A00C1B296 /* MedicalExaminationTableViewCell.m in Sources */,
 				8109045C1E1383F800CE7FAD /* IndustryModel.m in Sources */,
+				84523D9F216EFD51000F21E7 /* MineMenuTableViewCell.m in Sources */,
 				8118F2D41D2CEA8700691278 /* LFLLogin.m in Sources */,
 				81F3AE401EF11DBE00E1A5D7 /* ShopSupermarketViewController.m in Sources */,
 				84810A702106FFFD0074DBAB /* FilePersonalFormViewController.m in Sources */,

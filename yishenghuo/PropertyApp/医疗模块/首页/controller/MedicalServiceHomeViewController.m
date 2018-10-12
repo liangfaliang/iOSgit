@@ -23,6 +23,7 @@
 #import "InforViewController.h"
 #import "InformationViewController.h"
 #import "ShopDoodsDetailsViewController.h"
+#import "MedicalExaminationListViewController.h"//体检预约
 #define headerHt SCREEN.size.width * 12/25
 @interface MedicalServiceHomeViewController ()<UITableViewDataSource, UITableViewDelegate,FSGridLayoutViewDelegate,SDCycleScrollViewDelegate,MKJCollectionViewFlowLayoutDelegate>
 @property(nonatomic, strong)UITableView *tableView;
@@ -50,8 +51,8 @@
                       @{@"name":@"档案查询",@"imgurl":@"jiatingqianyue"},
                       @{@"name":@"家庭签约",@"imgurl":@"jiatingqianyue"},
                       @{@"name":@"家庭医生",@"imgurl":@"jiatingyisheng"},
-                      @{@"name":@"服务热线",@"imgurl":@"fuwurexian"},
-                      @{@"name":@"在线咨询",@"imgurl":@"zaixianzixun"}];
+                      @{@"name":@"在线咨询",@"imgurl":@"zaixianzixun"},
+                      @{@"name":@"预约体检",@"imgurl":@"fuwurexian"}];
     NSMutableArray *marr1 = [NSMutableArray array];
     for (NSDictionary *temdt in arr1) {
         [marr1 addObject:[ImLbModel mj_objectWithKeyValues:temdt]];
@@ -207,7 +208,10 @@
                     [weakSelf.navigationController pushViewController:[[FileQueryHomeViewController alloc]init] animated:YES];
                 }
                 if (indexpath.row == 6) {
-                    [weakSelf.navigationController pushViewController:[[ServiceHotlineListViewController alloc]init] animated:YES];
+//                    [weakSelf.navigationController pushViewController:[[ServiceHotlineListViewController alloc]init] animated:YES];//服务热线
+                }
+                if (indexpath.row == 7) {//体检预约
+                    [weakSelf.navigationController pushViewController:[[MedicalExaminationListViewController alloc]init] animated:YES];
                 }
                 
             }else if (indexPath.section == 4){

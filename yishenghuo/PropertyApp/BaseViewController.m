@@ -415,6 +415,14 @@ static UIImage *nav_back;
 //提示框
 -(void)alertController:(NSString *)name prompt:(NSString *)prompt sure:(NSString *)sure cancel:(NSString *)cancel success:(void (^)())success failure:(void (^)())failure{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:name message:prompt preferredStyle:UIAlertControllerStyleAlert];
+
+    if (cancel.length > 0) {
+        [alertController addAction:[UIAlertAction actionWithTitle:cancel style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            if (failure) {
+                failure();
+            }
+        }]];
+    }
     if (sure.length > 0) {
         [alertController addAction:[UIAlertAction actionWithTitle:sure style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             if (success) {
@@ -424,14 +432,6 @@ static UIImage *nav_back;
             
         }]];
     }
-    if (cancel.length > 0) {
-        [alertController addAction:[UIAlertAction actionWithTitle:cancel style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            if (failure) {
-                failure();
-            }
-        }]];
-    }
-
     
     [self presentViewController:alertController animated:YES completion:nil];
     

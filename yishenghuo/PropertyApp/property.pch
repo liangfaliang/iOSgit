@@ -116,7 +116,7 @@
 //#define JHMaincolor JHColor(255, 86, 18)//主色
 //#define JHAssistColor JHColor(255, 79, 0)//辅助色
 #define JHAssistColor JHColor(225, 0, 67)//辅助色
-#define JHAssistRedColor JHColor(255, 79, 0)//辅助色
+#define JHAssistRedColor JHColor(255, 0, 67)//辅助色
 #define JHshopMainColor JHColor(255, 79, 0)//商城主色
 #define JHMedicalColor JHColor(54, 159, 0)//医疗主色//(94, 178, 48)
 #define JHMedicalAssistColor JHColor(253, 161, 0)//医疗辅助色
@@ -133,9 +133,9 @@
 #define JHScreenW JHScreenBounds.size.width
 #define JHScreenH JHScreenBounds.size.height
 //导航栏的高度（加上状态栏）
-#define JHNavBarH 64
+#define JHNavBarH (screenH > 736 ? 88 : 64)
 //tabbar的高度
-#define JHTabbarH 49
+#define JHTabbarH (screenH > 736 ? 83.0 : 49.0)
 
 //适配屏幕大小
 #define FourS JHScreenH<=480

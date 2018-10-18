@@ -14,6 +14,7 @@
 @interface BasicViewController : UIViewController <DZNEmptyDataSetDelegate,DZNEmptyDataSetSource>
 @property (nonatomic, assign) BOOL isEmptyDelegate;//  是否设置空白页代理
 @property (nonatomic, assign) BOOL isCancelNetwork;//  是否设置页面返回取消网络请求 默认yes
+
 @property (nonatomic, strong) NSNumber * isLoadEnd;//数据是否加载完 0 正在加载 1加载完成 2加载失败
 @property (nonatomic, strong)id navigationBarTitle;
 @property (nonatomic, strong)UIButton *backButton;

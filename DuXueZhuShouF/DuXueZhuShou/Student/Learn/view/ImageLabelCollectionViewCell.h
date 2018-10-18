@@ -12,5 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconIm;
 @property (weak, nonatomic) IBOutlet UILabel *nameLb;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *iconTop;
-@property (nonatomic,retain) ImLbModel *model;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bageLbWidth;
+@property (weak, nonatomic) IBOutlet UILabel *bageLb;
+@property (retain, nonatomic)  ImLbModel *model;
 @end

@@ -100,6 +100,36 @@
     vc.TitleName = @"成绩曲线图";
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+//把UIView做成一个UIImage
+- (UIImage *)addViewImage:(UIView *)view{
+    //    UIGraphicsBeginImageContext(view.bounds.size);
+    //    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    //    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    //    return viewImage;
+    
+    // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了，关键就是第三个参数 [UIScreen mainScreen].scale。
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+- (UIImage *)snapshot:(UIView *)view
+
+{
+    
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size,YES,0.0);
+    
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return image;
+    
+}
 #pragma mark - 获取列表
 - (void)getData{
     [LFLHttpTool post:NSStringWithFormat(SERVER_IP,GradeInsSetRoleSetRoleUrl) params:nil viewcontrllerEmpty:self success:^(id response) {
@@ -111,10 +141,6 @@
             [self.bookArr removeAllObjects];
 
             for (NSDictionary *temDt in response[@"data"]) {
-                [self.bookArr addObject:temDt];
-                [self.bookArr addObject:temDt];
-                [self.bookArr addObject:temDt];
-                [self.bookArr addObject:temDt];
                 [self.bookArr addObject:temDt];
             }
         }else{

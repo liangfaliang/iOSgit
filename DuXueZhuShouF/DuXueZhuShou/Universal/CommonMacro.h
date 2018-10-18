@@ -53,7 +53,7 @@
 #define screenH [UIScreen mainScreen].bounds.size.height
 #define KeyWindow [UIApplication sharedApplication].keyWindow
 #define SYS_FONT(x) [UIFont systemFontOfSize:x]
-#define SAFE_NAV_HEIGHT (screenH == 812 ? 88 : 64)
+#define SAFE_NAV_HEIGHT (screenH > 736 ? 88 : 64)
 #define SAFE_BOTTOM_HEIGHT (screenH > 736 ? 83.0 : 49.0)
 #define SYS_FONTBold(x) [UIFont fontWithName:@"Helvetica-Bold" size:x]
 
@@ -65,7 +65,7 @@
 #define JHColoralpha(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 #define JHColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 #define JHRandomColor JHColor(arc4random_uniform(256),arc4random_uniform(256),arc4random_uniform(256))
-#define JHMaincolor JHColor(57, 149, 255)//主色
+#define JHMaincolor JHColor(57, 149, 255)//主色 3995FF
 #define JHAssistColor JHColor(254, 213, 33)//辅助色
 #define JHAssistRedColor JHColor(255, 79, 0)//辅助色
 #define JHshopMainColor JHColor(255, 79, 0)//商城主色

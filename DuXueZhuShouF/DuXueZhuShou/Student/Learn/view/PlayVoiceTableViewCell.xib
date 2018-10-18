@@ -23,7 +23,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="55" id="Ia1-TY-U8V"/>
                         </constraints>
-                        <state key="normal" image="play"/>
+                        <state key="normal" image="ting"/>
                         <connections>
                             <action selector="playBtnDown:" destination="KGk-i7-Jjw" eventType="touchDown" id="2s7-Ml-1U7"/>
                             <action selector="playBtnDownOutside:" destination="KGk-i7-Jjw" eventType="touchUpOutside" id="OFK-6G-eXE"/>
@@ -100,6 +100,6 @@
     <resources>
         <image name="audio" width="174" height="24"/>
         <image name="delete" width="20" height="20"/>
-        <image name="play" width="60" height="60"/>
+        <image name="ting" width="60" height="60"/>
     </resources>
 </document>

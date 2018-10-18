@@ -27,7 +27,8 @@ typedef NS_ENUM(NSInteger, ARRAYTYPE) {
     DeteArray,
     ThreeArray,
     YearsArray,
-    YMDWarray //年月日
+    YMDWarray, //年月日
+    YMarray //年月
 };
 
 typedef void(^MybolckAddress) (NSString *stra);

@@ -16,7 +16,8 @@
 -(void)updateBufferProgress:(NSTimeInterval )totalBuffer;
 -(void)player:(AVPlayer *)player changeRate:(float )rate;
 -(void)changeNewPlayItem:(AVPlayer *)player;
-
+-(void)failurePlayWithplayer:(NSString *)errorDes;//播放失败
+-(void)FinishedPlayWithplayer;//播放完成
 @end
 @interface RecordManage : NSObject
 SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(RecordManage);
@@ -30,6 +31,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(RecordManage);
 //播放音频的方法
 - (void)p_musicPlayerWithURL:(NSURL *)playerItemURL;
 - (void)stopPlay;
+
+
 /**
  *  移除定时器
  */

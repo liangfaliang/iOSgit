@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DuXueZhuShou-Bridging-Header.h"
+
 static NSString *const Cyvalue = @"yvalue";
 static NSString *const Ccolor = @"color";
 static NSString *const Cpercent = @"percent";

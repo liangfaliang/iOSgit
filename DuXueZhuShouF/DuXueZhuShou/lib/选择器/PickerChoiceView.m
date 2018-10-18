@@ -337,14 +337,6 @@
     //    [formatter setDateFormat:@"MM"];
     //    NSString *currentMonth = [NSString stringWithFormat:@"%ld月",(long)[[formatter stringFromDate:date]integerValue]];
     //    [self.pickerV selectRow:[monthArray indexOfObject:currentMonth]+12*50 inComponent:1 animated:YES];
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 #pragma mark-----UIPickerViewDataSource
@@ -356,6 +348,8 @@
     }else if (self.arrayType == ThreeArray){
         return 3;
     }else if (self.arrayType == YMDWarray){
+        return 1;
+    }else if (self.arrayType == YMarray){
         return 1;
     }
     return self.array.count;
@@ -383,6 +377,13 @@
         }
     }else if (self.arrayType == YMDWarray){
         return [[NSDate date] timeIntervalSince1970]/(24*60*60) *2;
+    }else if (self.arrayType == YMarray){//年月
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDateComponents *comp = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth
+                                             fromDate:[NSDate date]];
+        NSInteger year = [comp year];
+        return year *12;
+//        return [[NSDate date] timeIntervalSince1970]/(24*60*60) *2;
     }else{
         NSArray * arr = (NSArray *)[self.array objectAtIndex:component];
         return arr.count;
@@ -475,15 +476,37 @@
             return @"今天";
         }
         return [NSString stringWithFormat:@"%ld月%ld日 星期%@",(long)month,(long)day,weekArr[weekDay-1]];
+    }else if (self.arrayType == YMarray){
+        return [self getYearMonth:row];
+        
     }else{
         
         NSArray *arr = (NSArray *)[self.array objectAtIndex:component];
         return [arr objectAtIndex:row % arr.count];
     }
-    
+
 }
 
-
+-(NSString *)getYearMonth:(NSInteger )row{
+    if (row == 0) {
+        return @"全部";
+    }
+    NSInteger ROW = row - 1;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth
+                                         fromDate:[NSDate date]];
+    NSInteger year = [comp year];
+    NSInteger month = [comp month];
+    if (ROW >= month) {
+        year -= (ROW - month)/12 +1;
+    }
+    if (month > ROW%12) {
+        month -=  ROW%12;
+    }else{
+        month +=  (12 - ROW%12);
+    }
+    return [NSString stringWithFormat:@"%ld年%02ld月",(long)year,(long)month];
+}
 //返回每一列的宽度
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
@@ -604,8 +627,20 @@
 }
 
 - (void)completeBtnClick{
-    if (self.arrayType == YMDWarray){
+    if (self.arrayType == YMarray){
        NSInteger row = [self.pickerV selectedRowInComponent:0];
+        NSString *str =  [self getYearMonth:row];
+        if ([self.delegate respondsToSelector:@selector(PickerSelectorIndixString:str:row:isType:)]) {
+            [self.delegate PickerSelectorIndixString:self str:str row:0 isType:0];
+        }
+        if ([self.delegate respondsToSelector:@selector(PickerSelectorIndixString:row:isType:)]) {
+            [self.delegate PickerSelectorIndixString:str row:0 isType:0];
+        }
+        [self hideAnimation];
+        return;
+    }
+    if (self.arrayType == YMDWarray){
+        NSInteger row = [self.pickerV selectedRowInComponent:0];
         NSInteger minRow = roundf(self.minDate/(24*60*60.0));
         NSInteger maxRow = roundf(self.maxDate/(24*60*60.0));
         if (row < minRow || row > maxRow) {

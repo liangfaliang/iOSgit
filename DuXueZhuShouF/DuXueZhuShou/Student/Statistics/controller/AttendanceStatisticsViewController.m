@@ -81,6 +81,7 @@
         lb.text = @"单位:次";
         [_headerView addSubview:lb];
         BarChartView *barChartView = [[BarChartView alloc] init];
+        barChartView.noDataText = @"暂无数据";
         self.barChartView = barChartView;
         //    self.barChartView.delegate = self;//设置代理 可以设置X轴和Y轴的格式
         self.barChartView.frame = CGRectMake(0, _timeView.height_i + 20, self.view.frame.size.width, 9/24.0 * screenH);
@@ -217,12 +218,10 @@
                 }else{
                     [AlertView showMsg:@"暂无数据！"];
                 }
-                
             }
         }else{
             [AlertView showMsg:response[@"msg"]];
         }
-        
     } failure:^(NSError *error) {
         [self dismissTips];
         LFLog(@"error：%@",error);

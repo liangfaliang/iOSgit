@@ -271,12 +271,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(RecordManage);
                 break;
             case AVPlayerItemStatusFailed:
             {
+                if (self.delegate && [self.delegate respondsToSelector:@selector(failurePlayWithplayer:)]) {
+                    [self.delegate failurePlayWithplayer:@"加载失败"];
+                }
+                [AlertView showMsg:@"加载失败"];
                 NSLog(@"加载失败");
 
             }
                 break;
             case AVPlayerItemStatusUnknown:
             {
+                if (self.delegate && [self.delegate respondsToSelector:@selector(failurePlayWithplayer:)]) {
+                    [self.delegate failurePlayWithplayer:@"未知资源"];
+                }
+                [AlertView showMsg:@"未知资源"];
                 NSLog(@"未知资源");
 
             }
@@ -313,6 +321,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(RecordManage);
 
 - (void)playbackFinished:(NSNotification *)notifi {
     NSLog(@"播放完成");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(FinishedPlayWithplayer)]) {
+        [self.delegate FinishedPlayWithplayer];
+    }
 }
 
 

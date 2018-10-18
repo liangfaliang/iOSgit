@@ -35,7 +35,7 @@
     UserModel *model = [UserUtils getUserInfo];
     [self.iconIm sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
     self.gradeLb.text = [NSString stringWithFormat:@"您现在的等级是%@",model.rank];
-    self.nameLb.text = model.rank;
+    self.nameLb.text = model.next_rank;
     NSString *integra = [NSString stringWithFormat:@"%@积分，距离%@还差%@积分",model.score,model.next_rank,model.next_rank_diff];
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc]initWithString:integra];
     NSRange ran1 = [integra rangeOfString:model.score];
@@ -53,7 +53,7 @@
     //    progressView.toColor = @"ff7837";
     [self.drawBackview addSubview:progressView];
     progressView.frame = CGRectMake(0, 0, 0, 5);
-    CGFloat scale = 0.5;
+    CGFloat scale = model.next_rank_score.floatValue > 0 ? 1- model.next_rank_diff.floatValue/model.next_rank_score.floatValue : 0;
     [UIView animateWithDuration:2 * scale delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         progressView.frame = CGRectMake(0, 0, (screenW - 90) * scale, 5);
         progressView.toColor = @"ff7837";

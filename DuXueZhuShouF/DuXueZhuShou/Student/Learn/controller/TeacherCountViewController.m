@@ -33,8 +33,8 @@
         LFLog(@"获取列表:%@",response);
         NSInteger code = [response[@"code"] integerValue];
         if (code == 1 && [response[@"data"] isKindOfClass:[NSDictionary class]]) {
-            [self.AnswerBtn setAttributedTitle:[self getAttString:response[@"data"][@"question_answer_number"] str:@"答案问题"] forState:UIControlStateNormal];
-            [self.ReplyBtn setAttributedTitle:[self getAttString:response[@"data"][@"question_number"] str:@"回复数量"] forState:UIControlStateNormal];
+            [self.AnswerBtn setAttributedTitle:[self getAttString:response[@"data"][@"question_number"] str:@"答案问题"] forState:UIControlStateNormal];
+            [self.ReplyBtn setAttributedTitle:[self getAttString:response[@"data"][@"question_answer_number"] str:@"回复数量"] forState:UIControlStateNormal];
         }else{
             [AlertView showMsg:response[@"msg"]];
         }

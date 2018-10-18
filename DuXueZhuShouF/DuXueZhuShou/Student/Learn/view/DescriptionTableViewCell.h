@@ -10,6 +10,7 @@
 #import "AnswerDetailModel.h"
 @interface DescriptionTableViewCell : BasicTableViewCell
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *namelbBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLbHeight;
 @property (weak, nonatomic) IBOutlet UILabel *timeLb;
 @property (weak, nonatomic) IBOutlet YYLabel *nameLb;
 @property (weak, nonatomic) IBOutlet UILabel *contentLb;

@@ -20,7 +20,7 @@
     _omodel = omodel;
     [self.iconIm sd_setImageWithURL:[NSURL URLWithString:omodel.subject_images] placeholderImage:PlaceholderImage];
     self.contentLb.text = omodel.content;
-    self.timeLb.text = [UserUtils getShowDateWithTime:omodel.create_time dateFormat:@"HH:mm"];
+    self.timeLb.text = [UserUtils getShowDateWithTime:omodel.start_time ? omodel.start_time : omodel.create_time dateFormat:@"yyyy-MM-dd HH:mm"];
 
     if ([UserUtils getUserRole] == UserStyleStudent) {
         self.bageLb.hidden = omodel.is_read ;

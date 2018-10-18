@@ -257,7 +257,10 @@
             cell.textTf.leftViewMode = UITextFieldViewModeAlways;
             cell.vlineHeight.constant = 0;
         }
-        
+        WEAKSELF;
+        cell.collectionHeightRefsh = ^(NSInteger count) {
+            [weakSelf.tableView reloadData];
+        };
         return cell;
     }
     if (indexPath.section == 1) {

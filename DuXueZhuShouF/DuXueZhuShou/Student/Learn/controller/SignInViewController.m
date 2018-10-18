@@ -137,6 +137,9 @@
     if (self.ID) {
         [dt setObject:self.ID forKey:@"id"];
     }
+    if (self.date) {
+        [dt setObject:self.date forKey:@"date"];
+    }
     [LFLHttpTool post:NSStringWithFormat(SERVER_IP,AttendanceDetailUrl) params:dt viewcontrllerEmpty:self success:^(id response) {
         LFLog(@"获取列表:%@",response);
         [self.tableView.mj_header endRefreshing];

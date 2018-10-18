@@ -15,7 +15,7 @@
 @property (nonatomic, copy) NSString *name; /** 姓名  */
 @property (nonatomic, copy) NSString *username; /** 姓名  */
 @property (nonatomic, copy) NSString *color; /**颜色  */
-@property (nonatomic, copy) NSString *is_old; /** 是否过期,0否,1是 */
+@property (nonatomic, assign) NSInteger is_old; /** 是否过期,0否,1是 */
 @property (nonatomic, copy) NSString *user_is_read; /** 是否已读,0否,1是  */
 @property (nonatomic, copy) NSString *is_read; /** 是否已读,0否,1是  */
 @property (nonatomic, copy) NSString *ID; /** 对应数据  */

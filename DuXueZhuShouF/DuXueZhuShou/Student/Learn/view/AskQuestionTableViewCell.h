@@ -24,6 +24,7 @@
 @property(nonatomic,strong)UIImage  *picture;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionviewHeight;
 @property (weak, nonatomic) IBOutlet UIView *tfBackview;
+@property(nonatomic,copy)void (^collectionHeightRefsh)(NSInteger count);
 @property(nonatomic,retain)LeaveSubModel  *lmodel;
 @property(nonatomic,retain)AnswerModel  *model;
 @end

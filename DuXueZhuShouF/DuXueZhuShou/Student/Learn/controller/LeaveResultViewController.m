@@ -241,7 +241,7 @@
         UILabel *lb = [UILabel initialization:CGRectMake(15, 0, screenW - 30, 40) font:[UIFont systemFontOfSize:14] textcolor:JHmiddleColor numberOfLines:0 textAlignment:0];
         lb.text = section == 1 ? @"事由":@"审核意见";
         [header addSubview:lb];
-        if (section == 2) {
+        if ([UserUtils getUserRole] == UserStyleInstructor && section == 2) {
             UILabel *stutas = [UILabel initialization:CGRectMake(screenW - (self.model.status == 2 ? 155 : 65), 0, 50, 40) font:[UIFont systemFontOfSize:14] textcolor:JHAssistRedColor numberOfLines:0 textAlignment:NSTextAlignmentRight];
             stutas.text = self.model.status == 2 ? @"拒绝":@"同意";
             [header addSubview:stutas];
@@ -300,7 +300,7 @@
         NSInteger code = [response[@"code"] integerValue];
         if (code == 1) {
             [LeaveSubModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
-                return @{@"imagesArr" : @"images",@"check_imagesArr" : @"check_images"};
+                return @{@"imagesArr" : @"images",@"check_imagesArr" : @"check_images",@"category" : @"category_name"};
             }];
             self.model = [LeaveSubModel mj_objectWithKeyValues:response[@"data"]];
             [LeaveSubModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
@@ -327,7 +327,7 @@
                 }
             }
             if ([UserUtils getUserRole] == UserStyleStudent) {
-                self.navigationBarTitle  = self.model.status == 1 ? @"审核中" : (self.model.status == 2 ? @"审核拒绝" :@"审核通过");
+                self.navigationBarTitle  = self.model.is_old ? @"已过期" : (self.model.status == 1 ? @"审核中" : (self.model.status == 2 ? @"审核拒绝" :@"审核通过"));
             }else if ([UserUtils getUserRole] == UserStyleInstructor){
                 self.navigationBarTitle = [NSString stringWithFormat:@"%@的请假申请",self.model.name];
                 if (!self.model.is_old && self.model.status == 1) {

@@ -141,6 +141,7 @@
  单个折线图的显示
  */
 - (void)setLineChart:(LineChartView *)lineChart xValues:(NSArray *)xValues yValues:(NSArray *)yValues barTitle:(NSString *)bar{
+    _months = xValues;
     lineChart.delegate = self;
     lineChart.chartDescription.enabled = NO;
     lineChart.dragEnabled = YES;
@@ -155,6 +156,8 @@
     lineChart.xAxis.labelPosition = XAxisLabelPositionBottom;
     lineChart.xAxis.granularity = 1;//粒度
     lineChart.xAxis.axisMinimum  = 0;//
+    lineChart.xAxis.valueFormatter = self;
+    lineChart.xAxis.labelCount = self.months.count ;
     ChartYAxis *leftAxis = lineChart.leftAxis;
     [leftAxis removeAllLimitLines];
 //    leftAxis.axisMaximum = 200.0;

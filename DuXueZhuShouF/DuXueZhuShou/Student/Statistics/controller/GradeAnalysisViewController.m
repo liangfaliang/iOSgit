@@ -173,6 +173,8 @@ LazyLoadArray(classArray)
     }
 }
 - (IBAction)selectBtnClick:(UIButton *)sender {
+
+    self.unitLb.text = sender.tag == 1 ? @"单位:分" :@"单位:次";
     for (NSString *name in self.BtnNameArr) {
         UIButton *btn = [self valueForKey:name];
         if (sender == btn) {
@@ -317,6 +319,7 @@ LazyLoadArray(classArray)
         NSNumber *code = @([response[@"code"] integerValue]);
         if (code.integerValue == 1) {
             NSMutableArray *marr = [NSMutableArray array];
+             NSMutableArray *xArr = [NSMutableArray array];
             for (NSDictionary *temdt in response[@"data"]) {
                 NSString * score = lStringFor(temdt[@"score_avg"] ? temdt[@"score_avg"] : temdt[@"score"]);
                 if ((([UserUtils getUserRole] == UserStyleInstructor && !self.class) || ([UserUtils getUserRole] == UserStyleStudent)) && self.GradeBtn.isSelected){
@@ -325,10 +328,11 @@ LazyLoadArray(classArray)
                     
                     [marr addObject:@{Cyvalue:lStringFor(temdt[@"ranking"]),Ccolor:@"3396FB",Cpercent:lStringFormart(@"%@分, %@名",score,temdt[@"ranking"])}];
                 }
-
+                NSArray *dateArr = [temdt[@"date"] componentsSeparatedByString:@"-"];
+                [xArr addObject:dateArr.count > 2 ? lStringFormart(@"%ld.%ld",(long)[dateArr[1] integerValue],(long)[dateArr[2] integerValue]) : @""];
             }
             
-            [_helper setLineChart:_chartView xValues:nil yValues:marr barTitle:@""];
+            [_helper setLineChart:_chartView xValues:xArr yValues:marr barTitle:@""];
         }else{
             [AlertView showMsg:response[@"msg"]];
         }

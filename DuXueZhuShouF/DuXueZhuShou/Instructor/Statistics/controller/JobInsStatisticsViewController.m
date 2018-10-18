@@ -330,7 +330,8 @@
         [dt setObject:self.STView.rightTopView.titleLb.text forKey:@"end_date"];
     }else{
         [dt setObject:[UserUtils getTimeStrWithString:self.selectView.leftView.titleLb.text dateFormat:@"yyyy-MM-dd"] forKey:@"start_time"];
-        [dt setObject:[UserUtils getTimeStrWithString:self.selectView.rightView.titleLb.text dateFormat:@"yyyy-MM-dd"] forKey:@"end_time"];
+        NSInteger end_time = [UserUtils getTimeStrWithString:self.selectView.rightView.titleLb.text dateFormat:@"yyyy-MM-dd"].integerValue + 86399;
+        [dt setObject:lStringFormart(@"%ld",(long)end_time) forKey:@"end_time"];
     }
     [self presentLoadingTips];
     [LFLHttpTool post:NSStringWithFormat(SERVER_IP,self.isKaoQin ? AttendancStuStaUrl : OperationInsHistoryListUrl) params:dt viewcontrllerEmpty:self success:^(id response) {

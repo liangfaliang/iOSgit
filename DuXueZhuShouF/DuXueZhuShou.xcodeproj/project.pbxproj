@@ -2504,7 +2504,7 @@
 				CODE_SIGN_ENTITLEMENTS = DuXueZhuShou/DuXueZhuShou.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7C3AB2PNBW;
+				DEVELOPMENT_TEAM = RFFV3HY3Y7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2541,7 +2541,7 @@
 					"$(PROJECT_DIR)/DuXueZhuShou/SDK/shareeSDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/DuXueZhuShou/SDK/SDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhongruantianchen.DuXueZhuShou;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhongruan.DuXueZhuShou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DuXueZhuShou/Universal/DuXueZhuShou-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2562,7 +2562,7 @@
 				CODE_SIGN_ENTITLEMENTS = DuXueZhuShou/DuXueZhuShou.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7C3AB2PNBW;
+				DEVELOPMENT_TEAM = RFFV3HY3Y7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2599,7 +2599,7 @@
 					"$(PROJECT_DIR)/DuXueZhuShou/SDK/shareeSDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/DuXueZhuShou/SDK/SDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhongruantianchen.DuXueZhuShou;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhongruan.DuXueZhuShou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DuXueZhuShou/Universal/DuXueZhuShou-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

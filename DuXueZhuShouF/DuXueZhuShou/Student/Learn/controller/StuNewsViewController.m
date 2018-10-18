@@ -114,7 +114,7 @@
     //推荐回调
     NSLog(@"点击了 %@ 选项",ybPopupMenu.titles[index]);
     [self.rightBtn setTitle:ybPopupMenu.titles[index] forState:UIControlStateNormal];
-    self.rightBtn.tag = index + 1;
+    self.rightBtn.tag = index == 0 ? 1 : (4 - index);
     [self UpData];
 }
 #pragma mark - tableView
@@ -133,6 +133,7 @@
 {
     StuNewsModel *model  = self.dataArray[indexPath.row];
     [self HaveRead:model];
+    
     [UserUtils MessagePushContriller:self type:model.type ID:model.ID push_data:model.push_data];
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

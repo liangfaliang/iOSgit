@@ -22,19 +22,21 @@
 @implementation MineHomeViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.isCancelNetwork = NO;
     [UserUtils postGetUserInfo:self success:^(id response) {
-        [self RefreshHeaderdata];
+        [self UpData];
     } failure:nil];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.navigationBarTitle = @"我的";
     [self.view addSubview:self.tableView];
-    [self UpData];
+    
 }
 -(void)UpData{
-
+    [self RefreshHeaderdata];
 }
 -(NSMutableArray *)dataArray{
     if (!_dataArray) {
@@ -125,7 +127,21 @@
 #pragma mark - 退出登录
 -(void)OutPutClick{
     [UserUtils RemoveUserInfo];
-    [self CheckIsLogin];
+    LoginViewController *login = [LoginViewController sharedLoginViewController];
+    if (!self.presentedViewController && !self.isPresent && ![self isKindOfClass:[LoginViewController class]]) {
+        self.isPresent = YES;
+        WEAKSELF;
+        login.loginResultBlock = ^(NSInteger code) {
+            [UserUtils postGetUserInfo:self success:^(id response) {
+                [weakSelf UpData];
+            } failure:^(NSError *error) {
+                [weakSelf UpData];
+            }];//获取用户基本信息
+        };
+        [self presentViewController:login animated:YES completion:^{
+        }];
+    }
+//    [self CheckIsLogin];
 }
 
 #pragma mark - tableView

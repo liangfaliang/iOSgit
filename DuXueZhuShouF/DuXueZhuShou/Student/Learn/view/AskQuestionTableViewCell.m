@@ -91,9 +91,8 @@
         }];
         btn.index = indexPath.row ;
     }
-    
+
     return cell;
-    
 }
 
 -(void)buttonclick:(ImTopBtn *)button{
@@ -101,7 +100,11 @@
     if (![self.imageArray.lastObject isEqual:self.picture]) {
         [self.imageArray addObject:self.picture];
     }
+    self.collectionviewHeight.constant = ((screenW - 60)/3 + 10) * (self.imageArray.count/3 + (self.imageArray.count%3 ? 1 : 0));
     [self.collectionview reloadData];
+    if (self.collectionHeightRefsh) {
+        self.collectionHeightRefsh(self.imageArray.count);
+    }
     
 }
 
@@ -109,8 +112,8 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     UIImage *image = self.imageArray[indexPath.row];
     if ([image isEqual:self.picture]) {
-        if (self.imageArray.count > 3) {
-            [AlertView showMsg:@"最多选择3张图片!"];
+        if (self.imageArray.count > 5) {
+            [AlertView showMsg:@"最多选择5张图片!"];
             return;
         }
         [self selectPicture];
@@ -147,13 +150,11 @@
 // 选择头像
 -(void)selectPicture{
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        
-//        [self alertController:@"提示" prompt:@"此应用没有权限访问您的照片或视频，您可以在”隐私设置“中启用访问" sure:@"确定" cancel:@"取消" success:^{
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-//        } failure:^{
-//
-//        }];
-
+        BasicViewController *vc = (BasicViewController *)[self viewController];
+        [vc alertController:@"提示" prompt:@"此应用没有权限访问您的照片或视频，您可以在”隐私设置“中启用访问" sure:@"确定" cancel:@"取消" success:^{
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        } failure:^{
+        }];
         return;
     }
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -167,7 +168,7 @@
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"我的相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:3 delegate:self];
-        imagePickerVc.maxImagesCount = 4 - self.imageArray.count ;
+        imagePickerVc.maxImagesCount = 6 - self.imageArray.count ;
         imagePickerVc.allowPickingVideo = NO;
         imagePickerVc.allowCrop = YES;
         imagePickerVc.cropRect = CGRectMake(0, (screenH-screenW)/2, screenW, screenW);
@@ -186,10 +187,14 @@
     for (UIImage *im in photos) {
         [self.imageArray addObject:im];
     }
-    if (self.imageArray.count < 3) {
+    if (self.imageArray.count < 6) {
         [self.imageArray addObject:self.picture];
     }
+    self.collectionviewHeight.constant = ((screenW - 60)/3 + 10) * (self.imageArray.count/3 + (self.imageArray.count%3 ? 1 : 0));
     [self.collectionview reloadData];
+    if (self.collectionHeightRefsh) {
+        self.collectionHeightRefsh(self.imageArray.count);
+    }
 }
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     UIImage *editimage = info[UIImagePickerControllerOriginalImage];
@@ -199,12 +204,17 @@
             [self.imageArray removeObject:image];
         }
     }
-    if (self.imageArray.count < 3) {
+    if (self.imageArray.count < 6) {
         [self.imageArray addObject:self.picture];
     }
+    self.collectionviewHeight.constant = ((screenW - 60)/3 + 10) * (self.imageArray.count/3 + (self.imageArray.count%3 ? 1 : 0));
     [self.collectionview reloadData];
+    
     //移除图片选择器
     [[self viewController] dismissViewControllerAnimated:YES completion:nil];
+    if (self.collectionHeightRefsh) {
+        self.collectionHeightRefsh(self.imageArray.count);
+    }
     
     
 }

@@ -90,9 +90,11 @@
         PlayVoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PlayVoiceTableViewCell class]) forIndexPath:indexPath];
         if (self.model.url.length) {
             cell.timeLb.text = [NSString stringWithFormat:@"%@\"",[self.model.url getSecondFormUrl]];
+            __weak typeof(cell) weakCell = cell;
             cell.playBtnBlock = ^(BOOL isDown) {
                 if (!isDown) {
-                    [[RecordManage sharedRecordManage] p_musicPlayerWithURL:[NSURL URLWithString:self.model.url]];
+                    [weakCell playVoice:self.model.url];
+                    
                 }
             };
         }else{
@@ -124,14 +126,15 @@
     }
     AnswerListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AnswerListTableViewCell class]) forIndexPath:indexPath];
     ReplyModel *rmo = self.model.answers[indexPath.section -1];
+    if (![self.model.type isEqualToString:@"1"] && ![self.model.type isEqualToString:@"2"]) {
+        rmo.level = @"0";
+    }
     if (indexPath.row == 0) {
         cell.rmodel = rmo;
     }else{
         cell.rmodel = rmo.children[indexPath.row - 1];
     }
-
     return cell;
-    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 1) {

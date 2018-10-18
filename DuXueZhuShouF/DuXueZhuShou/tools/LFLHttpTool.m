@@ -21,7 +21,12 @@
 
 @implementation LFLHttpTool
 SYNTHESIZE_SINGLETON_FOR_CLASS(LFLHttpTool);
-
+-(instancetype)init{
+    if (self =[super init]) {
+        _isCancelRepeat = YES;
+    }
+    return self;
+}
 +(void)get:(NSString *)url params:(NSDictionary *)params viewcontrllerEmpty:(UIViewController *)vc success:(void (^)(id response))success failure:(void (^)(NSError *error))failure
 {
     LFLog(@"url:%@",url);
@@ -183,10 +188,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LFLHttpTool);
         if (bvc.isLoadEnd) bvc.isLoadEnd = @0;
     }
     LFLHttpTool *httptool = [LFLHttpTool sharedLFLHttpTool];
-    if ([httptool ignoreRequestWithUrl:url params:params]) {//忽略请求
-        LFLog(@"请求被忽略 URL:%@\n参数mdt：%@",url,params);
-        return;
+    if (httptool.isCancelRepeat) {
+        if ([httptool ignoreRequestWithUrl:url params:params]) {//忽略请求
+            LFLog(@"请求被忽略 URL:%@\n参数mdt：%@",url,params);
+            return;
+        }
+    }else{
+        httptool.isCancelRepeat = YES;//每次不取消重复 重置为取消重复
     }
+
     NSMutableDictionary *parmsMdt = [NSMutableDictionary dictionaryWithDictionary:params];
     LFLog(@"URL:%@\n参数mdt：%@",url,parmsMdt);
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];

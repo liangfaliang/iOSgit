@@ -27,6 +27,7 @@
         _isLoadEnd = @0;
         _isEmptyDelegate = YES;
         _isCancelNetwork = YES;
+
     }
     return self;
 }

@@ -42,7 +42,7 @@
 }
 -(void)UpData{
     [super UpData];
-//    [self getDataOption:nil];
+    [self getDataOption:nil];
     self.page = 1;
     [self getDataList:self.page isMy:NO];
     [self getDataList:0 isMy:YES];

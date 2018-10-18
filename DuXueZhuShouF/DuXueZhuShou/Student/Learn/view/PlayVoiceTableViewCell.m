@@ -42,11 +42,17 @@
         self.replyBlock();
     }
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)playVoice:(NSString *)url{
+    [RecordManage sharedRecordManage].delegate = self;
+    [[RecordManage sharedRecordManage] p_musicPlayerWithURL:[NSURL URLWithString:url]];
 }
-
+-(void)startPlayWithplayer:(AVPlayer *)player{
+    [self.playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
+}
+-(void)FinishedPlayWithplayer{
+    [self.playBtn setImage:[UIImage imageNamed:@"ting"] forState:UIControlStateNormal];
+}
+-(void)failurePlayWithplayer:(NSString *)errorDes{
+    [self.playBtn setImage:[UIImage imageNamed:@"ting"] forState:UIControlStateNormal];
+}
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PlayVoiceTableViewCell : UITableViewCell
+#import "RecordManage.h"
+@interface PlayVoiceTableViewCell : UITableViewCell <RecordPlayDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *playBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *playBtnHeight;
 
@@ -20,4 +20,6 @@
 @property (copy,nonatomic)void (^playBtnBlock)(BOOL isDown);
 @property (copy,nonatomic)void (^deleteBlock)(void);
 @property (copy,nonatomic)void (^replyBlock)(void);
+
+-(void)playVoice:(NSString *)url;
 @end

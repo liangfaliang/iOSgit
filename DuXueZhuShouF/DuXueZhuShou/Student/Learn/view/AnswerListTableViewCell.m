@@ -9,7 +9,7 @@
 #import "AnswerListTableViewCell.h"
 #import "UIButton+WebCache.h"
 #import "AskQuestionViewController.h"
-#import "RecordManage.h"
+
 @implementation AnswerListTableViewCell
 
 - (void)awakeFromNib {
@@ -71,7 +71,8 @@
     self.contenLb.text = rmodel.content;
     CGFloat space = 105;
     NSArray *linesArr = [self getSeparatedLinesArray:self.contenLb.text font:self.contenLb.font width:screenW - space];
-    NSString * timeStr = [NSString stringWithFormat:@"%@%@",(rmodel.level ? [rmodel.level isEqualToString:@"1"] : [rmodel.can_answer isEqualToString:@"1"]) ? @" 回复 ":@"" , [UserUtils getShowDateWithTime:rmodel.create_time dateFormat:@"yyyy.MM.dd HH:mm"] ];
+    //答疑 只有level为1 type为1或者2时可以回复回答
+    NSString * timeStr = [NSString stringWithFormat:@"%@%@",(rmodel.level ? ([rmodel.level isEqualToString:@"1"]) : [rmodel.can_answer isEqualToString:@"1"]) ? @" 回复 ":@"" , [UserUtils getShowDateWithTime:rmodel.create_time dateFormat:@"yyyy.MM.dd HH:mm"] ];
     NSMutableAttributedString *text = [timeStr AttributedString:@" 回复 " backColor:nil uicolor:JHMaincolor uifont:[UIFont systemFontOfSize:15]];
 
     self.timeLb.attributedText = text;
@@ -131,8 +132,18 @@
 }
 - (IBAction)playBtnClick:(id)sender {
     if (self.rmodel && self.rmodel.url.length) {
+        [RecordManage sharedRecordManage].delegate = self;
         [[RecordManage sharedRecordManage] p_musicPlayerWithURL:[NSURL URLWithString:_rmodel.url]];
     }
 }
 
+-(void)startPlayWithplayer:(AVPlayer *)player{
+    [self.playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
+}
+-(void)FinishedPlayWithplayer{
+    [self.playBtn setImage:[UIImage imageNamed:@"zanting"] forState:UIControlStateNormal];
+}
+-(void)failurePlayWithplayer:(NSString *)errorDes{
+    [self.playBtn setImage:[UIImage imageNamed:@"zanting"] forState:UIControlStateNormal];
+}
 @end

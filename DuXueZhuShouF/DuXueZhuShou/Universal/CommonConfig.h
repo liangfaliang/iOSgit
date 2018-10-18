@@ -42,11 +42,12 @@
 #define UserGetInfoByTokenUrl @"user/getSimpleInfo"//获取用户信息
 
 //消息
+#define NoReadMessageUrl @"message/getReadMessage"//是否有未读消息
 #define NewsListUrl @"message/index"//列表
 #define NewsDeleteUrl @"message/delete"//删除
 #define NewsHaveReadUrl @"message/read"//已读
 #define NewsDetailUrl @"message/details?id="//消息详情
-
+#define NewsHtmlDetailUrl @"message/details/id/"//获取消息文章h5
 
 //作业
 #define OperationStuGroupListUrl @"Workteacher/workGroup"//学生组列表

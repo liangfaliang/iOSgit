@@ -19,9 +19,9 @@
     self.nameLb.text = model.title;
     self.timeLb.text = [UserUtils getShowDateWithTime:model.create_time dateFormat:@"yyyy.MM.dd"];
     if (model.is_read && model.is_read.integerValue > 0) {
-        self.bageLb.hidden = NO;
-    }else{
         self.bageLb.hidden = YES;
+    }else{
+        self.bageLb.hidden = NO;
     }
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

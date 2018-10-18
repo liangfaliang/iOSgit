@@ -48,6 +48,10 @@
         if (!self.isHomework) {
             [self createBaritem];
         }
+    }else{
+        if (self.isHomework) {
+            [self getDataList:1 index:2];
+        }
     }
     [self getDataList:1 index:0];
     [self getDataList:1 index:1];
@@ -61,9 +65,8 @@
     [self getDataList:self.page index:self.pageMenu.selectedItemIndex];
 }
 -(NSMutableDictionary *)dataDt{
-    
     if (_dataDt == nil) {
-        _dataDt = [NSMutableDictionary dictionaryWithDictionary:@{DataKey(0):[NSMutableArray array],DataKey(1):[NSMutableArray array],DataPage(0):@"1",DataPage(1):@"1",DataMore(0):@"0",DataPage(1):@"0"}];
+        _dataDt = [NSMutableDictionary dictionaryWithDictionary:@{DataKey(0):[NSMutableArray array],DataPage(0):@"1",DataMore(0):@"0",DataKey(1):[NSMutableArray array],DataPage(1):@"1",DataMore(1):@"0",DataKey(2):[NSMutableArray array],DataPage(2):@"1",DataMore(2):@"0"}];
     }
     return _dataDt;
 }

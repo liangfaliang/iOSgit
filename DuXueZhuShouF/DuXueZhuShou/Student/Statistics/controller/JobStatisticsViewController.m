@@ -28,7 +28,10 @@
 //                           @{Cyvalue:@"9",Ccolor:@"FFB20A",Cpercent:@"11"}];
     [self createSingleBarChartView];
     [self createBaritem];
-
+    [self UpData];
+}
+-(void)UpData{
+    [self getData:nil];
 }
 -(void)createBaritem{
     UIBarButtonItem *rightBar = [[UIBarButtonItem alloc]initWithTitle:@"查看详情" style:UIBarButtonItemStylePlain target:self action:@selector(rightClick)];
@@ -52,6 +55,7 @@
     _timeView.zhiLb.hidden = YES;
     _timeView.leftTopView.hidden = YES;
     _timeView.leftBottomView.hidden = YES;
+    _timeView.rightTopView.titleLb.text = [UserUtils getShowDate:[NSDate date] dateFormat:@"yyyy-MM"];
     _timeView.sureBtn.hidden = YES;
     _timeView.frame = CGRectMake(0, 0, screenW, 60);
     WEAKSELF;
@@ -76,9 +80,9 @@
     picker.tag = tag;
     picker.inter = 2;
     picker.delegate = self;
-    picker.arrayType = YMDWarray;
-    picker.maxDate = [[NSDate date] timeIntervalSince1970];
-    picker.selectDate = picker.maxDate;
+    picker.arrayType = YMarray;
+//    picker.maxDate = [[NSDate date] timeIntervalSince1970];
+//    picker.selectDate = picker.maxDate;
     [self.view addSubview:picker];
 }
 #pragma mark -------- TFPickerDelegate
@@ -87,8 +91,15 @@
     LFLog(@"str:%@",str);
     PickerChoiceView *pickerview  = (PickerChoiceView *)picker;
     LbRightImLeftView *view = [self.timeView viewWithTag:pickerview.tag];
-    view.titleLb.text = [UserUtils getShowDateWithTime:str dateFormat:@"YYYY-MM-dd"];
-    [self getData:str];
+    if ([str isEqualToString:@"全部"]) {
+        [self getData:nil];
+    }else{
+        [self getData:[UserUtils getTimeStrWithString:str dateFormat:@"yyyy年MM月"]];
+        str = [str stringByReplacingOccurrencesOfString:@"年" withString:@"-"];
+        str = [str stringByReplacingOccurrencesOfString:@"月" withString:@""];
+    }
+    view.titleLb.text = str;
+
 }
 
 #pragma mark - 获取列表
@@ -102,9 +113,9 @@
             NSInteger type2 = [response[@"data"][@"type2"] integerValue];
             NSInteger type3 = [response[@"data"][@"type3"] integerValue];
             if (total) {
-                NSArray *yValueArr = @[@{Cyvalue:[NSString stringWithFormat:@"%ld",(type1 * 100)/total ],Ccolor:@"3396FB",Cpercent:[NSString stringWithFormat:@"%ld",type1]},
-                                       @{Cyvalue:[NSString stringWithFormat:@"%ld",(type2 * 100)/total ],Ccolor:@"FB6250",Cpercent:[NSString stringWithFormat:@"%ld",type2]},
-                                       @{Cyvalue:[NSString stringWithFormat:@"%ld",(type3 * 100)/total ],Ccolor:@"FFB20A",Cpercent:[NSString stringWithFormat:@"%ld",type3]}];
+                NSArray *yValueArr = @[@{Cyvalue:[NSString stringWithFormat:@"%ld",(type2 * 100)/total ],Ccolor:@"FB6250",Cpercent:[NSString stringWithFormat:@"%ld",type2]},
+                                       @{Cyvalue:[NSString stringWithFormat:@"%ld",(type3 * 100)/total ],Ccolor:@"FFB20A",Cpercent:[NSString stringWithFormat:@"%ld",type3]},
+                                       @{Cyvalue:[NSString stringWithFormat:@"%ld",(type1 * 100)/total ],Ccolor:@"3396FB",Cpercent:[NSString stringWithFormat:@"%ld",type1]}];
                 [_helper setBarChart:self.barChartView xValues:@[@"已完成",@"未完成",@"未打卡"] yValues:yValueArr barTitle:@""];
             }else{
                 [_helper setBarChart:self.barChartView xValues:@[@"已完成",@"未完成",@"未打卡"] yValues:nil barTitle:@""];

@@ -226,6 +226,7 @@
     if (!model.token){
         return;
     }
+    [LFLHttpTool sharedLFLHttpTool].isCancelRepeat = NO;//不取消重复请求
     [LFLHttpTool post:NSStringWithFormat(SERVER_IP,UserGetInfoByTokenUrl) params:nil viewcontrllerEmpty:vc  success:^(id response) {
         LFLog(@"获取最新用户信息：%@",response);
         NSString *str = [NSString stringWithFormat:@"%@",response[@"code"]];
@@ -400,7 +401,7 @@
     if (type.integerValue < 3) {//1后台推送,2系统消息,3作业,4成绩,5答疑,6请假申请,7补分申请
         WKViewViewController *bord = [[WKViewViewController alloc]init];
         bord.titleStr = @"详情";
-        bord.urlStr = NSStringWithFormat(SERVER_IP,NSStringWithFormat(HtmlDetailUrl, push_data));
+        bord.urlStr = NSStringWithFormat(SERVER_IP,NSStringWithFormat(NewsHtmlDetailUrl, Id));
         [vc.navigationController pushViewController:bord animated:YES];
     }else{
         UserUtils *util = [[UserUtils alloc]init];
@@ -417,12 +418,8 @@
             }else if ([UserUtils getUserRole] == UserStyleInstructor){
                 iosClass = @{@"class":@"EditGradeViewController",@"property":@{@"ID":push_data ,@"typeStyle":@"3"}};
             }
-   
         }else if (type.integerValue == 5){//答疑
-            if ([UserUtils getUserRole] == UserStyleStudent) {
-                iosClass = @{@"class":@"AnswerDetailViewController",@"property":@{@"ID":push_data}};
-            }else if ([UserUtils getUserRole] == UserStyleInstructor){
-            }
+            iosClass = @{@"class":@"AnswerDetailViewController",@"property":@{@"ID":push_data}};
             
         }else if (type.integerValue == 6){//请假申请
             iosClass = @{@"class":@"LeaveResultViewController",@"property":@{@"ID":push_data}};

@@ -10,4 +10,5 @@
 
 @interface SignInViewController : BasicViewController
 @property(nonatomic, copy)NSString *ID;
+@property(nonatomic, copy)NSString *date;
 @end

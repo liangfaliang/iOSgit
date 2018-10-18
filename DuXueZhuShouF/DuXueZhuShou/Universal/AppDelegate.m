@@ -149,12 +149,12 @@
 //后台转前台
 -(void)applicationDidBecomeActive:(UIApplication *)application{
     LFLog(@"后台转前台");
-    if (_tabbar) {
-        UIViewController *vc = [_tabbar topVC:self.window.rootViewController];
-        if ([NSStringFromClass([vc class]) isEqualToString:@"MSetUpViewController"]) {
-            [vc performSelector:@selector(refresh)];
-        }
-    }
+//    if (_tabbar) {
+//        UIViewController *vc = [_tabbar topVC:self.window.rootViewController];
+//        if ([NSStringFromClass([vc class]) isEqualToString:@"MSetUpViewController"]) {
+//            [vc performSelector:@selector(refresh)];
+//        }
+//    }
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     LFLog(@"callbackUrl1:%@",url.host);
@@ -294,18 +294,15 @@ fetchCompletionHandler:
 (void (^)(UIBackgroundFetchResult))completionHandler {
     if (application.applicationState == UIApplicationStateActive){//程序当前处于前台
         NSLog(@"前台2");
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:userInfo[@"aps"][@"alert"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:userInfo[@"aps"][@"alert"][@"title"] preferredStyle:UIAlertControllerStyleAlert];
         
         [alertController addAction:[UIAlertAction actionWithTitle:@"立即去查看" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self skipViewcontroller:userInfo];
         }]];
         
-        
         [alertController addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
         }]];
-        
-        
         
         [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
     }else if (application.applicationState == UIApplicationStateInactive) {//程序从后台打开
@@ -321,88 +318,8 @@ fetchCompletionHandler:
 }
 
 -(void)skipViewcontroller:(NSDictionary *)userInfo{
-    NSMutableDictionary *mdt = [NSMutableDictionary dictionaryWithDictionary:userInfo];
-    [mdt setValue:@"push" forKey:@"push"];
-
-    
-    //    UIViewController *vc = [_tabbar topVC:self.window.rootViewController];
-    //    UIViewController *board  = nil;
-    //    NSString *keyid = [NSString stringWithFormat:@"%@",userInfo[@"id"]];
-    //    NSString *keywords = [NSString stringWithFormat:@"%@",userInfo[@"type"]];
-    //    if ([keywords isEqualToString:@"0"]) {
-    //
-    //    }else if ([keywords isEqualToString:@"1"]) {
-    //        AMeetingDetailViewController *detail = [[AMeetingDetailViewController alloc]init];
-    //        detail.type_id = 1;
-    //        detail.mid = keyid;
-    //        board = detail;
-    //    }
-    //    if ([keywords isEqualToString:@"runtime"]) {//runtime跳转
-    //        // 类名
-    //        NSString *class =[NSString stringWithFormat:@"%@", userInfo[@"ios_class"]];
-    //        const char *className = [class cStringUsingEncoding:NSASCIIStringEncoding];
-    //
-    //        // 从一个字串返回一个类
-    //        Class newClass = objc_getClass(className);
-    //        if (!newClass)
-    //        {
-    //            // 创建一个类
-    //            Class superClass = [NSObject class];
-    //            newClass = objc_allocateClassPair(superClass, className, 0);
-    //            // 注册你创建的这个类
-    //            objc_registerClassPair(newClass);
-    //        }
-    //        // 创建对象
-    //        id instance = [[newClass alloc] init];
-    //        if ([userInfo[@"property"] isKindOfClass:[NSDictionary class]]) {
-    //            NSDictionary *propertys = userInfo[@"property"];
-    //            [propertys enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-    //                // 检测这个对象是否存在该属性
-    //                if ([self checkIsExistPropertyWithInstance:instance verifyPropertyName:key]) {
-    //                    // 利用kvc赋值
-    //                    [instance setValue:obj forKey:key];
-    //                }
-    //            }];
-    //            LFLog(@"instance:%@",instance);
-    //
-    //        }
-    //        board = instance;
-    //
-    //        if (![board respondsToSelector:@selector(viewDidLoad)]) {
-    //            board = nil;
-    //        }
-    //
-    //    }
-    
-    
-    //    if (board) {
-    //        [vc.navigationController pushViewController:board animated:YES];
-    //    }
-}
-/**
- *  检测对象是否存在该属性
- */
-- (BOOL)checkIsExistPropertyWithInstance:(id)instance verifyPropertyName:(NSString *)verifyPropertyName
-{
-    unsigned int outCount, i;
-    
-    // 获取对象里的属性列表
-    objc_property_t * properties = class_copyPropertyList([instance
-                                                           class], &outCount);
-    
-    for (i = 0; i < outCount; i++) {
-        objc_property_t property =properties[i];
-        //  属性名转成字符串
-        NSString *propertyName = [[NSString alloc] initWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
-        // 判断该属性是否存在
-        if ([propertyName isEqualToString:verifyPropertyName]) {
-            free(properties);
-            return YES;
-        }
-    }
-    free(properties);
-    
-    return NO;
+    UIViewController *vc = [_tabbar topVC:self.window.rootViewController];
+    [UserUtils MessagePushContriller:vc type:lStringFor(userInfo[@"type"]) ID:lStringFor(userInfo[@"push_data"]) push_data:lStringFor(userInfo[@"push_data"])];
 }
 
 - (void)application:(UIApplication *)application
@@ -436,21 +353,15 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
 - (void)receiveJPushMessage:(NSNotification *)noti
 {
     NSDictionary *userInfo = noti.userInfo;
-    NSLog(@"noti:%@",noti);
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"有新的消息" message:userInfo[@"content"] preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"立即去查看" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self skipViewcontroller:userInfo];
-    }]];
-    
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }]];
-    
-    
-    
-    [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+    NSLog(@"自定义消息:%@",userInfo);
+//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"有新的消息" message:userInfo[@"content"] preferredStyle:UIAlertControllerStyleAlert];
+//    [alertController addAction:[UIAlertAction actionWithTitle:@"立即去查看" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        [self skipViewcontroller:userInfo];
+//    }]];
+//    [alertController addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }]];
+//    [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
     
 }
 

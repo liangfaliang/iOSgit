@@ -13,7 +13,7 @@
 @property (nonatomic, copy) NSString *imgurl; /** 头像 */
 @property (nonatomic, strong) NSDictionary *data; /** 头像 */
 @property (nonatomic, assign) NSInteger isSelect; /** 头像 */
-
+@property (nonatomic, copy) NSString *bage; /** 头像 */
 
 @property (nonatomic, copy) NSString *msg_type; /** 头像 */
 @end

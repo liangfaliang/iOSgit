@@ -64,14 +64,19 @@
 -(RangePickerView *)calendar{
     if (_calendar == nil) {
         _calendar = [[RangePickerView alloc]initWithFrame:CGRectMake(0, SAFE_NAV_HEIGHT, screenW, screenH - SAFE_NAV_HEIGHT)];
-        
+        [_calendar.calendar selectDate:[NSDate date]];
         WEAKSELF;
         _calendar.selectDateBlock = ^(NSArray<NSDate *> *dateArr) {
-            NSDateFormatter *Formatter = [[NSDateFormatter alloc] init];
-            Formatter.dateFormat = @"yyyy-MM-dd";
-            weakSelf.dateStr = [Formatter stringFromDate:dateArr[0]];
+            if (dateArr.count) {
+                NSDateFormatter *Formatter = [[NSDateFormatter alloc] init];
+                Formatter.dateFormat = @"yyyy-MM-dd";
+                weakSelf.dateStr = [Formatter stringFromDate:dateArr[0]];
+                
+                LFLog(@"%@",[Formatter stringFromDate:dateArr[0]]);
+            }else{
+                weakSelf.dateStr = nil;
+            }
             [weakSelf UpData];
-            LFLog(@"%@",[Formatter stringFromDate:dateArr[0]]);
         };
     }
     return _calendar;
@@ -102,6 +107,7 @@
     SignInViewController *vc =[[SignInViewController alloc]init];
     AttendStuModel *mo = self.dataArray[indexPath.row];
     vc.ID = mo.ID;
+    vc.date = self.dateStr;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

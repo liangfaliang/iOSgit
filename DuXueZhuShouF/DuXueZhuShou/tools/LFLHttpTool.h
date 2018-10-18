@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface LFLHttpTool : NSObject
+@property (nonatomic, assign) BOOL isCancelRepeat;//  是否设置页面返回取消重复的网络请求 默认yes
+
 
 + (LFLHttpTool *)sharedLFLHttpTool;
 //get

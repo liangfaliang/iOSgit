@@ -33,7 +33,10 @@
 @end
 
 @implementation LearnHomeViewController
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self getReadMessage];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -78,6 +81,7 @@
         
         for (NSDictionary *dt in arr) {
             ImLbModel *mo = [ImLbModel mj_objectWithKeyValues:dt];
+            
             [_bookArr addObject:mo];
         }
 //        [_bookArr addObjectsFromArray:@[@"",@"",@"",@"",@"",@""]];
@@ -229,13 +233,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 //    [self soapv13Request];
 //    return;
-//    UIImagePickerController *myImagePickerController = [[UIImagePickerController alloc] init];
-//    myImagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
-//    myImagePickerController.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
-//    myImagePickerController.delegate = self;
-//    myImagePickerController.editing = NO;
-//    [self presentViewController:myImagePickerController animated:YES completion:nil];
-//    return;
+
     if (indexPath.row == 0) {//消息
         [self.navigationController pushViewController:[[StuNewsViewController alloc]init] animated:YES];
     }else if (indexPath.row == 1){//作业 布置作业
@@ -311,6 +309,29 @@
     } failure:^(NSError *error) {
         [self presentLoadingTips:@"请求失败！"];
 
+    }];
+    
+}
+
+#pragma mark 是否有未读消息
+-(void)getReadMessage{
+    [LFLHttpTool post:NSStringWithFormat(SERVER_IP,NoReadMessageUrl) params:nil viewcontrllerEmpty:self success:^(id response) {
+        LFLog(@"是否有未读消息:%@",response);
+        NSString *str = [NSString stringWithFormat:@"%@",response[@"code"]];
+        if ([str isEqualToString:@"1"]) {
+            ImLbModel *mo = self.bookArr[0];
+            if (response[@"data"][@"has_not_read"] && [response[@"data"][@"has_not_read"] integerValue] == 1) {
+                mo.bage = @"●";
+            }else{
+                mo.bage = nil;
+            }
+        }else{
+//            [self presentLoadingTips:response[@"msg"]];
+        }
+        [self.collectionview reloadData];
+    } failure:^(NSError *error) {
+        [self presentLoadingTips:@"请求失败！"];
+        
     }];
     
 }

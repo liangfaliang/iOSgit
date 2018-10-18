@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.nameLb.numberOfLines = 0;
     self.imageHeight.constant = (screenW - 50)/3;
     self.imageBackview.layer.masksToBounds = YES;
     for (int i = 0; i < 6; i ++) {
@@ -34,6 +35,7 @@
         str  = [NSString stringWithFormat:@"%@\n%@",Amodel.title,Amodel.full_name];
     }
     self.nameLb.attributedText = [self getAttribute:str title:Amodel.title];
+    self.nameLbHeight.constant = [self.nameLb.attributedText selfadaption:30].height + 10;
     self.contentLb.text = Amodel.content;
     [self setImageArr:Amodel.images];
 
@@ -47,7 +49,7 @@
 }
 -(NSMutableAttributedString *)getAttribute:(NSString *)str title:(NSString *)title{
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:str] ;
-    text.yy_lineSpacing = 10;
+    text.yy_lineSpacing = 5;
     text.yy_font = [UIFont systemFontOfSize:14];
     text.yy_color = JHmiddleColor;
     NSRange ran = [str rangeOfString:title];

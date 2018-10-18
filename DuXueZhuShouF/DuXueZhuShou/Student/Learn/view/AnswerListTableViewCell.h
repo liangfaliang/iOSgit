@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "AnswerDetailModel.h"
-@interface AnswerListTableViewCell : UITableViewCell
+#import "RecordManage.h"
+@interface AnswerListTableViewCell : UITableViewCell <RecordPlayDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLb;
 @property (weak, nonatomic) IBOutlet UILabel *contenLb;
 @property (weak, nonatomic) IBOutlet UILabel *timeLb;

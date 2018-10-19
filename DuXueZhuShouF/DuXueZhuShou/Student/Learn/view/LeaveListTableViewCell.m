@@ -32,7 +32,7 @@
     
     NSArray *colorArr = @[@"3995FF",@"FA4041",@"666666"];
     if ( model.status > 0 && model.status <= arr.count) {
-        if ([UserUtils getUserRole] == UserStyleInstructor && model.status == 1 &&  model.is_old == 1) {
+        if ( model.status == 1 &&  model.is_old == 1) {
             self.stutasLb.text = @"已过期";
             self.stutasLb.textColor = JHmiddleColor;
         }else{

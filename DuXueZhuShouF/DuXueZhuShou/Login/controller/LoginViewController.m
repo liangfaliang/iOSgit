@@ -33,10 +33,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LoginViewController);
 -(void)creayeUI{
 
     UIImageView *imageview = [[UIImageView alloc]init];
-    imageview.image = [UIImage imageNamed:@"nengyuan_2"];
+    imageview.image = [UIImage imageNamed:@"logologin"];
     [self.view addSubview:imageview];
     [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
-        
         make.top.offset(104);
         make.centerX.equalTo(self.view.mas_centerX);
         

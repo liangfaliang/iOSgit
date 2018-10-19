@@ -327,7 +327,7 @@
                 }
             }
             if ([UserUtils getUserRole] == UserStyleStudent) {
-                self.navigationBarTitle  = self.model.is_old ? @"已过期" : (self.model.status == 1 ? @"审核中" : (self.model.status == 2 ? @"审核拒绝" :@"审核通过"));
+                self.navigationBarTitle  = self.model.status == 1 ? (self.model.is_old ? @"已过期" : @"审核中" ) :  (self.model.status == 2 ? @"审核拒绝" :@"审核通过");
             }else if ([UserUtils getUserRole] == UserStyleInstructor){
                 self.navigationBarTitle = [NSString stringWithFormat:@"%@的请假申请",self.model.name];
                 if (!self.model.is_old && self.model.status == 1) {

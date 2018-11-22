@@ -188,7 +188,7 @@
         [marr addObject:RecordAudioFilePath];
     }
     if (marr.count) {
-        [UploadManager uploadImagesWith:marr uploadFinish:^(NSArray *imFailArr){
+        NSMutableArray *taskmarr = [UploadManager uploadImagesWith:marr uploadFinish:^(NSArray *imFailArr){
             if (imFailArr.count) {
                 [self alertController:@"提示" prompt:[NSString stringWithFormat:@"您有%lu张图片上传失败！，是否继续",(unsigned long)marr.count] sure:@"是" cancel:@"否" success:^{
                     [self UpdateLoad];
@@ -213,6 +213,7 @@
         } failure:^(NSError *error, int idx) {
             
         }];
+        [self addSessionDataTasks:taskmarr];
     }else{
         [self UpdateLoad];
     }

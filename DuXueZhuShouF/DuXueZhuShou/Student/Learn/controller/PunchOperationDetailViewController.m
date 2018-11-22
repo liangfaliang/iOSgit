@@ -99,7 +99,7 @@
     DescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DescriptionTableViewCell class]) forIndexPath:indexPath];
     if (indexPath.section == 0) {
         NSString *str  = [NSString stringWithFormat:@"%@\n%@",@"",[UserUtils getShowDateWithTime:self.dmodel.start_time dateFormat:@"yyyy.MM.dd HH:mm"]];
-        cell.nameLb.attributedText = [cell getAttribute:str title:@""];
+        [cell setNamelbattributedText:[cell getAttribute:str title:@""]];
         cell.contentLb.text = self.dmodel.content;
         [cell setImageArr:self.dmodel.images];
     }else if (indexPath.section == 1){

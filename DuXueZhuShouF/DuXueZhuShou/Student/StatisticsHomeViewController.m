@@ -67,7 +67,7 @@
     if(!_sdCySV){
         _sdCySV = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, SAFE_NAV_HEIGHT, screenW, headerHt) delegate:self placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
         _sdCySV.currentPageDotColor = [UIColor whiteColor];
-        _sdCySV.localizationImageNamesGroup = @[@"tjbj"];
+        _sdCySV.localizationImageNamesGroup = @[@"bjj"];
 
     }
     
@@ -119,15 +119,9 @@
         if ([UserUtils getUserRole] == UserStyleStudent) {
             [self.navigationController pushViewController:[[JobStatisticsViewController alloc]init] animated:YES];
         }else if ([UserUtils getUserRole] == UserStyleInstructor){
-//            PunchOperationListViewController *vc = [[PunchOperationListViewController alloc]init];
-//            vc.isHomework = YES;
-//            PublishedViewController *vc = [[PublishedViewController alloc]init];
-//            [self.navigationController pushViewController:vc animated:YES];
-            
             InsJobStatisticsViewController *vc = [[InsJobStatisticsViewController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
-            
-            
+  
         }
         
     }else if (indexPath.row == 1){

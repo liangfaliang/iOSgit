@@ -37,7 +37,6 @@
 		84269E052111BB3400A4E1AC /* TestScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84269E032111BB3400A4E1AC /* TestScoreTableViewCell.m */; };
 		84269E062111BB3400A4E1AC /* TestScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84269E042111BB3400A4E1AC /* TestScoreTableViewCell.xib */; };
 		8427A5E621393FF7003EA979 /* MyUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427A5E521393FF7003EA979 /* MyUITextField.m */; };
-		8427D5F3216DA7F60026EDEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8427D5F2216DA7F60026EDEB /* Images.xcassets */; };
 		842B1C2A213F7EEF00FB3A21 /* StuSignInModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842B1C29213F7EEF00FB3A21 /* StuSignInModel.m */; };
 		842B1C2D213F882100FB3A21 /* AutoEdgBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 842B1C2C213F882100FB3A21 /* AutoEdgBtn.m */; };
 		843A41B221129CD90060B047 /* GradesRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A41B121129CD90060B047 /* GradesRankViewController.m */; };
@@ -354,7 +353,6 @@
 		84269E042111BB3400A4E1AC /* TestScoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestScoreTableViewCell.xib; sourceTree = "<group>"; };
 		8427A5E421393FF7003EA979 /* MyUITextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyUITextField.h; sourceTree = "<group>"; };
 		8427A5E521393FF7003EA979 /* MyUITextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyUITextField.m; sourceTree = "<group>"; };
-		8427D5F2216DA7F60026EDEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		842B1C28213F7EEF00FB3A21 /* StuSignInModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StuSignInModel.h; sourceTree = "<group>"; };
 		842B1C29213F7EEF00FB3A21 /* StuSignInModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StuSignInModel.m; sourceTree = "<group>"; };
 		842B1C2B213F882100FB3A21 /* AutoEdgBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoEdgBtn.h; sourceTree = "<group>"; };
@@ -1609,7 +1607,6 @@
 				84810A662106CAE20074DBAB /* Info.plist */,
 				84810A672106CAE20074DBAB /* main.m */,
 				84810A7C210728580074DBAB /* PrefixHeader.pch */,
-				8427D5F2216DA7F60026EDEB /* Images.xcassets */,
 			);
 			path = DuXueZhuShou;
 			sourceTree = "<group>";
@@ -1825,11 +1822,11 @@
 			isa = PBXGroup;
 			children = (
 				84A818602122788B0014B4D6 /* YBPopupMenu.h */,
-				84A818612122788B0014B4D6 /* YBRectConst.m */,
-				84A818622122788B0014B4D6 /* YBPopupMenuPath.m */,
-				84A818632122788B0014B4D6 /* YBRectConst.h */,
 				84A818642122788B0014B4D6 /* YBPopupMenu.m */,
 				84A818652122788B0014B4D6 /* YBPopupMenuPath.h */,
+				84A818622122788B0014B4D6 /* YBPopupMenuPath.m */,
+				84A818632122788B0014B4D6 /* YBRectConst.h */,
+				84A818612122788B0014B4D6 /* YBRectConst.m */,
 			);
 			path = YBPopupMenu;
 			sourceTree = "<group>";
@@ -2035,7 +2032,6 @@
 				8460617721086128001D7A60 /* ImageLabelCollectionViewCell.xib in Resources */,
 				84269DFE2111AD1D00A4E1AC /* SignInTableViewCell.xib in Resources */,
 				8460611821081CD7001D7A60 /* README.txt in Resources */,
-				8427D5F3216DA7F60026EDEB /* Images.xcassets in Resources */,
 				84A818732122AF310014B4D6 /* AddSignInTableViewCell.xib in Resources */,
 				843A41D12112E1B00060B047 /* PlayVoiceTableViewCell.xib in Resources */,
 				84269DF92111A41600A4E1AC /* SignInHeaderView.xib in Resources */,
@@ -2544,7 +2540,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongruan.DuXueZhuShou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f9d8b486-4654-4126-85b7-4fb089cce6ee";
+				PROVISIONING_PROFILE = "c423fbf7-5002-442f-b846-8d5103d74654";
 				PROVISIONING_PROFILE_SPECIFIER = dxzsTest001;
 				SWIFT_OBJC_BRIDGING_HEADER = "DuXueZhuShou/Universal/DuXueZhuShou-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2605,7 +2601,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongruan.DuXueZhuShou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f9d8b486-4654-4126-85b7-4fb089cce6ee";
+				PROVISIONING_PROFILE = "c423fbf7-5002-442f-b846-8d5103d74654";
 				PROVISIONING_PROFILE_SPECIFIER = dxzsTest001;
 				SWIFT_OBJC_BRIDGING_HEADER = "DuXueZhuShou/Universal/DuXueZhuShou-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

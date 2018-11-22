@@ -120,19 +120,21 @@ LazyLoadArray(classArray)
 #pragma mark  公开问答
 -(void)rightClick{
 
-    
+    if (!self.dataDt[Grade_type]) {
+        [self presentLoadingTips:@"请选择类别！"];
+        return;
+    }
+    if (!self.dataDt[subject_id]) {
+        [self presentLoadingTips:@"请选择科目！"];
+        return;
+    }
     if ([UserUtils getUserRole] == UserStyleStudent) {
         HallofFameViewController *record = [[HallofFameViewController alloc]init];
+        record.type_id = self.dataDt[Grade_type];
+        record.subject_id = self.dataDt[subject_id];
         [self.navigationController pushViewController:record animated:YES];
     }else if ([UserUtils getUserRole] == UserStyleInstructor){
-        if (!self.dataDt[Grade_type]) {
-            [self presentLoadingTips:@"请选择类别！"];
-            return;
-        }
-        if (!self.dataDt[subject_id]) {
-            [self presentLoadingTips:@"请选择科目！"];
-            return;
-        }
+
         LookStudentViewController *record = [[LookStudentViewController alloc]init];
         record.type_id = self.dataDt[Grade_type];
         record.subject_id = self.dataDt[subject_id];
@@ -322,7 +324,7 @@ LazyLoadArray(classArray)
              NSMutableArray *xArr = [NSMutableArray array];
             for (NSDictionary *temdt in response[@"data"]) {
                 NSString * score = lStringFor(temdt[@"score_avg"] ? temdt[@"score_avg"] : temdt[@"score"]);
-                if ((([UserUtils getUserRole] == UserStyleInstructor && !self.class) || ([UserUtils getUserRole] == UserStyleStudent)) && self.GradeBtn.isSelected){
+                if ((([UserUtils getUserRole] == UserStyleInstructor && !self.isClass) || ([UserUtils getUserRole] == UserStyleStudent)) && self.GradeBtn.isSelected){
                     [marr addObject:@{Cyvalue:score,Ccolor:@"3396FB",Cpercent:lStringFormart(@"%@分, %@名",score,temdt[@"ranking"])}];
                 }else{
                     

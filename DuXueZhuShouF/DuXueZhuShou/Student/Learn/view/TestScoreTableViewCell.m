@@ -23,7 +23,7 @@
     self.nameLb.text = model.name;
     self.timeLb.text = [NSString stringWithFormat:@"测试时间:%@",model.date];
     self.contentLb.text = [NSString stringWithFormat:@"测试说明:%@",model.explain];
-    NSArray *nameArr = @[model.subject ,@"班级",model.subject,@"全校"];
+    NSArray *nameArr = @[model.subject ,@"班级",model.campus,@"全校"];
     NSArray *valueArr = @[lStringFormart(@"%@分\n", model.score),
                           lStringFormart(@"%@名\n", model.class_ranking),
                           lStringFormart(@"%@名\n", model.campus_ranking),

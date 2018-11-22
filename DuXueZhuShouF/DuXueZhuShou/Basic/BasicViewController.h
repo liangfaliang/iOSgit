@@ -48,7 +48,7 @@
  *  如果请求需要有取消功能，那么在failure的block中，需要添加对取消的失败不做任务处理的实现。
  */
 - (void)addSessionDataTask:(NSURLSessionDataTask *)task;
-
+- (void)addSessionDataTasks:(NSArray *)taskArr;
 /** 移除已经请求成功的请求
  * 在请求完成的block中，添加移除的操作
  */
@@ -56,6 +56,7 @@
 
 /** 取消所有的请求 */
 - (void)cancelAllSessionDataTask;
-
+#pragma mark - 当前控制器是否正在显示
+-(BOOL)isCurrentViewControllerVisible;
 
 @end

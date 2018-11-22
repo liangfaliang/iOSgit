@@ -23,5 +23,7 @@
 @property (nonatomic, copy) NSString * completed_rate;/** 完成率，单位百分之*/
 @property (nonatomic, copy) NSString * uncompleted_rate;/** 未完成率，单位百分之*/
 @property (nonatomic, copy) NSString * uncard_rate;/** 未打卡率，单位百分之*/
+@property (nonatomic, copy) NSString * subject_name;/** 科目名称*/
+
 
 @end

@@ -10,6 +10,7 @@
 #import "TextFiledLableTableViewCell.h"
 #import "OperationFooterView.h"
 #import "DescriptionTableViewCell.h"
+#import "PostOperationViewController.h"
 @interface LookOperationViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, assign)NSInteger page;
@@ -45,6 +46,7 @@
         }else{
             _footerView.deleteBtn.hidden = YES;
         }
+        [_footerView.btn1 setTitle:@"编辑" forState:UIControlStateNormal];
 //
         WEAKSELF;
         _footerView.btnClickBlcok = ^(NSInteger tag) {
@@ -54,6 +56,13 @@
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             }else if (tag == 4){//删除
                 [weakSelf DeleteData];
+            }else if (tag == 1){//编辑
+                PostOperationViewController *vc = [[PostOperationViewController alloc]init];
+                vc.model = weakSelf.model;
+                vc.successBlock = ^{
+                    [weakSelf UpData];
+                };
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }else{
                 [weakSelf UpdateLoad:tag == 1 ? @"2" :@"1"];
             }
@@ -108,7 +117,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         DescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DescriptionTableViewCell class]) forIndexPath:indexPath];
-        cell.nameLb.text = [UserUtils getShowDateWithTime:self.model.start_time dateFormat:@"yyyy-MM-dd HH:mm"];
+//        [cell setNamelbText:[UserUtils getShowDateWithTime:self.model.start_time dateFormat:@"yyyy-MM-dd HH:mm"]];
+        NSString *str  = [NSString stringWithFormat:@"%@\n%@",self.model.subject.name,[UserUtils getShowDateWithTime:self.model.start_time dateFormat:@"yyyy.MM.dd HH:mm"]];
+        [cell setNamelbattributedText:[cell getAttribute:str title:self.model.subject.name]];
         cell.contentLb.text = self.model.content;
         [cell setImageArr:self.model.imageArr];
         [cell.contentLb NSParagraphStyleAttributeName:5];

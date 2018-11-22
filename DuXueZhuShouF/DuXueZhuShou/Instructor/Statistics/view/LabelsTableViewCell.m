@@ -30,11 +30,21 @@
         }
         if ([titleArr[i] isKindOfClass:[NSString class]]) {
             lb.text = titleArr[i];
-            lb.width_i = [lb.text selfadapUifont:lb.font weith:30].width + 2;
+            if (self.menuArr.count > i) {
+                lb.width_i = [self.menuArr[i] selfadapUifont:lb.font weith:30].width + 2;
+            }else{
+                lb.width_i = [lb.text selfadapUifont:lb.font weith:30].width + 2;
+            }
+            
 
         }else if ([titleArr[i] isKindOfClass:[NSAttributedString class]]){
             lb.attributedText = titleArr[i];
-            lb.width_i = [lb.attributedText selfadaption:30].width + 2;
+            if (self.menuArr.count > i) {
+                lb.width_i = [self.menuArr[i] selfadaption:30].width + 2;
+            }else{
+                lb.width_i = [lb.attributedText selfadaption:30].width + 2;
+            }
+            
         }
 //        [lb sizeToFit];
         wid += lb.width_i;

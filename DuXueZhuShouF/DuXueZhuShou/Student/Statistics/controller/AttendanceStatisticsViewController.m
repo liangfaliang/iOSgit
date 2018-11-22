@@ -196,6 +196,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SignInViewController *vc =[[SignInViewController alloc]init];
+    TextFiledModel *cmo = self.dataArray[indexPath.row];
+    vc.ID = self.attenID;
+    vc.date = cmo.name;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

@@ -27,8 +27,9 @@
         if (!omodel.is_read) {
             self.statusLb.text = @"未读";
         }else{
-            NSArray *statuArr = @[@"未打卡",@"已打卡",@"已评价"];
-            if (omodel.status > 0 && omodel.status < 4) {
+            NSArray *statuArr = omodel.type ? @[@"未打卡",@"已完成",@"未完成"] : @[@"未打卡",@"已打卡",@"已评价"];
+            NSInteger idx = omodel.type ? omodel.type.integerValue : omodel.status;
+            if (idx > 0 && idx < 4) {
                 self.statusLb.text = statuArr[omodel.status - 1];
             }else{
                 self.statusLb.text = @"";

@@ -14,7 +14,7 @@ typedef void(^uploadFailure)(NSError *error, int idx);
 
 @interface UploadManager : NSObject
 
-+ (void)uploadImagesWith:(NSArray *)images uploadFinish:(uploadCallBlock)finish success:(uploadSuccess)success failure:(uploadFailure)failure;
++ (NSMutableArray *)uploadImagesWith:(NSArray *)images uploadFinish:(uploadCallBlock)finish success:(uploadSuccess)success failure:(uploadFailure)failure;
 
 
 + (void)commentReqWithImages:(NSArray *)imageArr

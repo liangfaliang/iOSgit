@@ -21,6 +21,7 @@
         _boderWid = 10;
         _proColor = JHMaincolor;
         _boderColor = JHbgColor;
+        
         self.backgroundColor = [UIColor whiteColor];
     }
     return self;

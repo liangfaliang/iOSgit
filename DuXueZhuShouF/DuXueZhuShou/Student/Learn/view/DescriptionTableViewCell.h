@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLbHeight;
 @property (weak, nonatomic) IBOutlet UILabel *timeLb;
 @property (weak, nonatomic) IBOutlet YYLabel *nameLb;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLbRight;
+
 @property (weak, nonatomic) IBOutlet UILabel *contentLb;
 @property (weak, nonatomic) IBOutlet UIView *imageBackview;
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
@@ -30,6 +32,8 @@
 @property (copy, nonatomic)void (^replyBtnBlock)(void);
 @property(nonatomic, strong)AnswerDetailModel *Amodel;
 @property(nonatomic, strong)IgDetailModel *Imodel;
+-(void)setNamelbText:(NSString *)text;
+-(void)setNamelbattributedText:(NSAttributedString *)text;
 -(void)setImageArr:(NSArray *)imageArr;
 -(NSMutableAttributedString *)getAttribute:(NSString *)str title:(NSString *)title;
 @end

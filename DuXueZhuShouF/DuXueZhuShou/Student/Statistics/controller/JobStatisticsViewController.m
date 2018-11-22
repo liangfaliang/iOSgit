@@ -55,7 +55,7 @@
     _timeView.zhiLb.hidden = YES;
     _timeView.leftTopView.hidden = YES;
     _timeView.leftBottomView.hidden = YES;
-    _timeView.rightTopView.titleLb.text = [UserUtils getShowDate:[NSDate date] dateFormat:@"yyyy-MM"];
+    _timeView.rightTopView.titleLb.text = @"全部";// [UserUtils getShowDate:[NSDate date] dateFormat:@"yyyy-MM"];
     _timeView.sureBtn.hidden = YES;
     _timeView.frame = CGRectMake(0, 0, screenW, 60);
     WEAKSELF;

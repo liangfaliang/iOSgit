@@ -144,4 +144,7 @@ return _##obj;\
 
 //分隔符
 #define Separator @"@@"
+
+//图片选择最大张数
+#define selectPicMaxNum 3
 #endif /* CommonMacro_h */

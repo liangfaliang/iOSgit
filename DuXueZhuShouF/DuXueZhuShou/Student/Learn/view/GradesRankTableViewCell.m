@@ -45,7 +45,15 @@
     }
 
 }
-
+-(CGFloat )getHeight{
+    CGFloat l5 = [self.label5.text selfadapUifont:self.label5.font weith:100].width;
+     CGFloat l4 = [self.label4.text selfadapUifont:self.label4.font weith:100].width;
+    l4 =  60;
+    CGFloat l2 = [self.label2.text selfadapUifont:self.label2.font weith:screenW - 100].width;
+    l2 = l2 < 100 ? l2 : 100;
+    CGFloat lh3 = [self.label3.text selfadapUifont:self.label3.font weith: 230 + l5 + l2].height;
+    return lh3 + 30;
+}
 -(void)setLabelTextcolor:(UIColor *)color{
     if (color) {
         [self.rankBtn setTitleColor:color forState:UIControlStateNormal];
@@ -80,6 +88,7 @@
         }
     }
     CGFloat space = (screenW - width)/4 - 2;
+    space  = space < 5 ? 5 : space;
     self.labSpace1.constant = space;
     self.labSpace2.constant = space;
     self.labSpace3.constant = space;

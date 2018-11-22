@@ -53,7 +53,8 @@
 -(NSMutableArray *)dataArray{
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
-        NSArray *array = @[@{@"child":@[@{@"name":@"作业下发时间",@"key":@"start_time"},
+        NSArray *array = @[@{@"child":@[@{@"name":@"科目",@"key":@"subject_name"},
+                                        @{@"name":@"作业下发时间",@"key":@"start_time"},
                                         @{@"name":@"最晚打卡时间",@"key":@"end_time"},
                                         @{@"name":@"未打卡提醒时间",@"key":@"clock_time"}]
                              },
@@ -111,8 +112,8 @@
 //        [text yy_setFont:[UIFont systemFontOfSize:13] range:range];
 //        [text yy_setColor:JHmiddleColor range:range];
         NSArray *nameArr = @[@"btn1",@"btn2",@"btn3"];
-        NSArray *key1Arr = @[@"student_completed_number",@"student_uncompleted_number",@"student_uncard_number"];
-        NSArray *key2Arr = @[@"completed_rate",@"uncompleted_rate",@"uncard_rate"];
+        NSArray *key2Arr = @[@"student_completed_number",@"student_uncompleted_number",@"student_uncard_number"];
+        NSArray *key1Arr = @[@"completed_rate",@"uncompleted_rate",@"uncard_rate"];
         NSArray *titleArr = @[@"已完成",@"未完成",@"未打卡"];
         int i = 0;
         for (NSString *namebtn in nameArr) {
@@ -225,7 +226,12 @@
             self.model = [PublishedModel mj_objectWithKeyValues:response[@"data"]];
             TextSectionModel *smo =  self.dataArray[0];
             for (TextFiledModel *cmo in smo.child) {
-                cmo.text = [UserUtils getShowDateWithTime:[self.model valueForKey:cmo.key] dateFormat:@"yyyy.MM.dd HH:mm"];
+                if ([cmo.key isEqualToString:@"subject_name"]) {
+                    cmo.text = [self.model valueForKey:cmo.key];
+                }else{
+                    cmo.text = [UserUtils getShowDateWithTime:[self.model valueForKey:cmo.key] dateFormat:@"yyyy.MM.dd HH:mm"];
+                }
+                
             }
             
         }else{

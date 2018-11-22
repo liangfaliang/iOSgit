@@ -39,7 +39,7 @@
                         <outletCollection property="gestureRecognizers" destination="TiD-lp-xrq" appends="YES" id="Lzn-gu-ET9"/>
                     </connections>
                 </view>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sD-Ji-Zh1">
+                <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sD-Ji-Zh1">
                     <rect key="frame" x="268" y="17.5" width="65" height="35"/>
                     <color key="backgroundColor" red="0.17254901960784313" green="0.5490196078431373" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -48,6 +48,9 @@
                     <state key="normal" title="查询">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="3"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="queryClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="6p4-fq-XlI"/>
                     </connections>

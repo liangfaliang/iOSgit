@@ -47,8 +47,9 @@ LazyLoadArray(sessionDataTaskMArr)
 -(void)CheckIsLogin{
     if ([UserUtils getUserRole] == UserStyleNone) {
         LoginViewController *login = [LoginViewController sharedLoginViewController];
-        if (!self.presentedViewController && !self.isPresent && ![self isKindOfClass:[LoginViewController class]]) {
+        if (!self.presentedViewController && !self.isPresent && ![self isKindOfClass:[LoginViewController class]] && [self isCurrentViewControllerVisible] && !login.isPresent) {
             self.isPresent = YES;
+            login.isPresent = YES;
             [self presentViewController:login animated:YES completion:^{
             }];
         }
@@ -66,7 +67,11 @@ LazyLoadArray(sessionDataTaskMArr)
         [self initBackItem];
     }
 }
-
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self dismissTips];
+    [AlertView dismiss];
+}
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (self.isEmptyDelegate) {
@@ -396,6 +401,13 @@ LazyLoadArray(sessionDataTaskMArr)
     }
     [self.sessionDataTaskMArr addObject:task];
 }
+- (void)addSessionDataTasks:(NSArray *)taskArr
+{
+    if (!taskArr.count) {
+        return;
+    }
+    [self.sessionDataTaskMArr addObjectsFromArray:taskArr];
+}
 
 /** 移除已经请求成功的请求 */
 - (void)removeSessionDataTask:(NSURLSessionDataTask *)task
@@ -410,7 +422,7 @@ LazyLoadArray(sessionDataTaskMArr)
         return;
     }
     
-    for (NSURLSessionDataTask *dataTask in self.sessionDataTaskMArr) {
+    for (NSURLSessionTask *dataTask in self.sessionDataTaskMArr) {
         if (NSURLSessionTaskStateRunning == dataTask.state
             || NSURLSessionTaskStateSuspended == dataTask.state) {
             [dataTask cancel];
@@ -418,6 +430,7 @@ LazyLoadArray(sessionDataTaskMArr)
     }
     
     [self.sessionDataTaskMArr removeAllObjects];
+    
 }
 //- (NSMutableArray *)sessionDataTaskMArr
 //{
@@ -436,4 +449,9 @@ LazyLoadArray(sessionDataTaskMArr)
     [super dismissViewControllerAnimated:flag completion:completion];
 }
 
+#pragma mark - 当前控制器是否正在显示
+-(BOOL)isCurrentViewControllerVisible
+{
+    return (self.isViewLoaded && self.view.window);
+}
 @end

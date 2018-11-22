@@ -11,7 +11,6 @@
 @interface LFLHttpTool : NSObject
 @property (nonatomic, assign) BOOL isCancelRepeat;//  是否设置页面返回取消重复的网络请求 默认yes
 
-
 + (LFLHttpTool *)sharedLFLHttpTool;
 //get
 +(void)get:(NSString *)url params:(NSDictionary *)params viewcontrllerEmpty:(UIViewController *)vc success:(void (^)(id response))success failure:(void (^)(NSError *error))failure;

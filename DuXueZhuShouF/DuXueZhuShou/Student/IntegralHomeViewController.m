@@ -57,7 +57,7 @@
     if(!_sdCySV){
         _sdCySV = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, SAFE_NAV_HEIGHT, screenW, headerHt) delegate:self placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
         _sdCySV.currentPageDotColor = [UIColor whiteColor];
-        _sdCySV.localizationImageNamesGroup = @[@"jfbj"];
+        _sdCySV.localizationImageNamesGroup = @[@"goal"];
     }
     
     return _sdCySV;

@@ -167,8 +167,8 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     UIImage *image = self.imageArray[indexPath.row];
     if ([image isEqual:self.picture]) {
-        if (self.imageArray.count > 5) {
-            [self presentLoadingTips:@"最多选择5张图片!"];
+        if (self.imageArray.count > selectPicMaxNum) {
+            [AlertView showMsg:[NSString stringWithFormat:@"最多选择%d张图片!",selectPicMaxNum]];
             return;
         }
         [self selectPicture];
@@ -222,8 +222,8 @@
         [self presentViewController:pic animated:YES completion:nil];
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"我的相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:5 delegate:self];
-        imagePickerVc.maxImagesCount = 6 - self.imageArray.count ;
+        TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:selectPicMaxNum delegate:self];
+        imagePickerVc.maxImagesCount = selectPicMaxNum + 1 - self.imageArray.count ;
         imagePickerVc.allowPickingVideo = NO;
         imagePickerVc.allowCrop = YES;
         imagePickerVc.cropRect = CGRectMake(0, (screenH-screenW)/2, screenW, screenW);
@@ -239,7 +239,7 @@
 #pragma mark  图片选择成功的方法
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos{
     
-    [self.imageArray removeAllObjects];
+    [self.imageArray removeObject:self.picture];
     for (UIImage *im in photos) {
         [self.imageArray addObject:im];
     }
@@ -252,12 +252,8 @@
     UIImage *editimage = info[UIImagePickerControllerOriginalImage];
     
     editimage = [editimage fixOrientation];
-    for (UIImage *image in self.imageArray) {
-        if ([image isEqual:self.picture]) {
-            [self.imageArray removeObject:image];
-            
-        }
-    }
+    [self.imageArray removeObject:self.picture];
+    [self.imageArray addObject:editimage];
     [self.imageArray addObject:self.picture];
     [self.collectionview reloadData];
     //移除图片选择器
@@ -273,8 +269,10 @@
 - (IBAction)SubmitClick:(UIButton *)sender {
     __block NSMutableDictionary *mdt = [NSMutableDictionary dictionary];
     NSString *url = @"";
+    NSMutableArray *marr = [NSMutableArray arrayWithArray:self.imageArray];
+    [marr removeObject:self.picture];
     if ([UserUtils getUserRole] == UserStyleStudent) {
-        if (!self.textview.text.length) {
+        if (!self.textview.text.length && (!self.isAmend ? !marr.count : 1)) {
             [self presentLoadingTips:self.isAmend ? @"请输入补分理由！" :@"请输入作业完成情况"];
             return;
         }
@@ -296,11 +294,10 @@
     if (self.ID) {
         [mdt setObject:self.ID forKey:@"id"];
     }
-    NSMutableArray *marr = [NSMutableArray arrayWithArray:self.imageArray];
-    [marr removeObject:self.picture];
+
     if (marr.count) {
         [self presentLoadingTips];
-        [UploadManager uploadImagesWith:marr uploadFinish:^(NSArray *imFailArr){
+        NSMutableArray *taskmarr = [UploadManager uploadImagesWith:marr uploadFinish:^(NSArray *imFailArr){
             if (imFailArr.count) {
                 [self alertController:@"提示" prompt:[NSString stringWithFormat:@"您有%lu张图片上传失败！，是否继续",(unsigned long)marr.count] sure:@"是" cancel:@"否" success:^{
                     [self UpdateLoad:mdt url:url];
@@ -329,6 +326,7 @@
         } failure:^(NSError *error, int idx) {
 
         }];
+        [self addSessionDataTasks:taskmarr];
     }else{
         [self UpdateLoad:mdt url:url];
     }

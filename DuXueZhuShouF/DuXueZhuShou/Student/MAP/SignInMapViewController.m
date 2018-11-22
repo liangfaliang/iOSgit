@@ -277,7 +277,7 @@
 }
 -(void)updatePicture:(UIImage *)image{
     [self presentLoadingTips];
-    [UploadManager uploadImagesWith:@[image] uploadFinish:^(NSArray *imFailArr){
+    NSMutableArray *taskmarr = [UploadManager uploadImagesWith:@[image] uploadFinish:^(NSArray *imFailArr){
         if (imFailArr.count) {
             [self dismissTips];
             [self alertController:@"提示" prompt:@"图片上传失败！是否重新上传" sure:@"是" cancel:@"否" success:^{
@@ -300,6 +300,7 @@
     } failure:^(NSError *error, int idx) {
         
     }];
+    [self addSessionDataTasks:taskmarr];
 }
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     
@@ -355,6 +356,8 @@
                     self.pmodel.lng = location.coordinate.longitude;
                     self.searchFiled.text = regeocode.formattedAddress;
                 }
+                CLLocation *curLocation = [[CLLocation alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
+                [self.mapView setCenterCoordinate:curLocation.coordinate animated:YES];
             }else{
                 if (!self.pmodel) [self RecordLocation:location];
             }
@@ -423,6 +426,7 @@
 {
     if (response.regeocode != nil)
     {
+        self.city = response.regeocode.addressComponent.city;
         self.pmodel.name = response.regeocode.formattedAddress;
         self.pmodel.address = response.regeocode.formattedAddress;
         self.pmodel.lat = request.location.latitude;

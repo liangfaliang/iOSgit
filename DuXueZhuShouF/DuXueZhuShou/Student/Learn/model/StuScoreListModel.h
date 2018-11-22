@@ -18,4 +18,5 @@
 @property (nonatomic, copy) NSString * campus_ranking; /** 校区排名  */
 @property (nonatomic, copy) NSString * school_ranking; /** 学校排名 */
 @property (nonatomic, copy) NSString * score; /** 考试分数  */
+@property (nonatomic, copy) NSString * campus; /** 校区  */
 @end

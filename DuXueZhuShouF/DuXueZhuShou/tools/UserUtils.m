@@ -62,16 +62,7 @@
 #pragma mark获取用户角色
 +(UserRoleStyle )getUserRole{
     if ([self getUserInfo] && [self getUserInfo].type >= 0) {
-        
-//
-//#ifdef DEBUG
-//        return [UserDefault objectForKey:@"role"] ? [[UserDefault objectForKey:@"role"] integerValue] : [self getUserInfo].type;
-//#else
         return [self getUserInfo].type;
-        //do sth.
-//#endif
-//        return UserStyleInstructor;
-//        return UserStyleStudent;
     }
     return  UserStyleNone;
 }
@@ -433,4 +424,10 @@
         [util runtimePushviewController:iosClass controller:vc];
     }
 }
+
++(BOOL)isCurrentViewControllerVisible:(UIViewController *)viewController
+{
+    return (viewController.isViewLoaded && viewController.view.window);
+}
+
 @end

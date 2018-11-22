@@ -267,6 +267,9 @@
                 self.Mymodel = [RankModel mj_objectWithKeyValues:response[@"data"]];
                 self.Mymodel.isMy = YES;
                 self.footcell.model = self.Mymodel;
+                self.footcell.height_i = [self.footcell getHeight];
+                self.footcell.y_i = screenH - self.footcell.height_i;
+                self.tableView.height_i = screenH - self.footcell.height_i;
             }else{
                 if (pageNum == 1) {
                     [self.dataArray removeAllObjects];

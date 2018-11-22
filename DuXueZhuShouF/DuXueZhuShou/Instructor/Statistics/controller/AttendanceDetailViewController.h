@@ -9,5 +9,6 @@
 #import "BasicViewController.h"
 
 @interface AttendanceDetailViewController : BasicViewController
-
+@property(nonatomic, copy)NSString *ID;
+@property(nonatomic, copy)NSString *date;
 @end

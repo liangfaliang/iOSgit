@@ -112,8 +112,8 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     UIImage *image = self.imageArray[indexPath.row];
     if ([image isEqual:self.picture]) {
-        if (self.imageArray.count > 5) {
-            [AlertView showMsg:@"最多选择5张图片!"];
+        if (self.imageArray.count > selectPicMaxNum) {
+            [AlertView showMsg:[NSString stringWithFormat:@"最多选择%d张图片!",selectPicMaxNum]];
             return;
         }
         [self selectPicture];
@@ -167,8 +167,8 @@
         [[self viewController] presentViewController:pic animated:YES completion:nil];
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"我的相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:3 delegate:self];
-        imagePickerVc.maxImagesCount = 6 - self.imageArray.count ;
+        TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:selectPicMaxNum  delegate:self];
+        imagePickerVc.maxImagesCount = selectPicMaxNum +1 - self.imageArray.count ;
         imagePickerVc.allowPickingVideo = NO;
         imagePickerVc.allowCrop = YES;
         imagePickerVc.cropRect = CGRectMake(0, (screenH-screenW)/2, screenW, screenW);
@@ -199,11 +199,8 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     UIImage *editimage = info[UIImagePickerControllerOriginalImage];
     editimage = [editimage fixOrientation];
-    for (UIImage *image in self.imageArray) {
-        if ([image isEqual:self.picture]) {
-            [self.imageArray removeObject:image];
-        }
-    }
+    [self.imageArray removeObject:self.picture];
+    [self.imageArray addObject:editimage];
     if (self.imageArray.count < 6) {
         [self.imageArray addObject:self.picture];
     }

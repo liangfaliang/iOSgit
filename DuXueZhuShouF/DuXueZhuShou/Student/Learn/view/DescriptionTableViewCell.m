@@ -33,14 +33,25 @@
         self.timeLb.hidden = NO;
         self.timeLb.text = [UserUtils getShowDateWithTime:Amodel.create_time dateFormat:@"yyyy.MM.dd HH:mm"];
         str  = [NSString stringWithFormat:@"%@\n%@",Amodel.title,Amodel.full_name];
+        self.nameLbRight.constant = 15 + [self.timeLb.text selfadapUifont:self.timeLb.font weith:100].width + 10;
+    }else{
+        self.timeLb.hidden = YES;
+        self.nameLbRight.constant = 15;
     }
     self.nameLb.attributedText = [self getAttribute:str title:Amodel.title];
-    self.nameLbHeight.constant = [self.nameLb.attributedText selfadaption:30].height + 10;
+    self.nameLbHeight.constant = [self.nameLb.attributedText selfadaption:self.nameLbRight.constant + 15].height + 5;
     self.contentLb.text = Amodel.content;
     [self setImageArr:Amodel.images];
 
 }
-
+-(void)setNamelbText:(NSString *)text{
+    [self.nameLb setText:text];
+    self.nameLbHeight.constant = [text selfadaption:self.nameLbRight.constant + 15].height + 5;
+}
+-(void)setNamelbattributedText:(NSAttributedString *)text{
+    [self.nameLb setAttributedText:text];
+    self.nameLbHeight.constant = [self.nameLb.attributedText selfadaption:self.nameLbRight.constant + 15].height + 5;
+}
 -(void)setImodel:(IgDetailModel *)Imodel{
     _Imodel =Imodel;
     self.nameLb.attributedText = nil;

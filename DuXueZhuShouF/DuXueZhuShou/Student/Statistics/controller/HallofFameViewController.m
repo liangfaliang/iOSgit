@@ -132,7 +132,10 @@
 }
 #pragma mark - 获取列表
 - (void)getData{
-    [LFLHttpTool post:NSStringWithFormat(SERVER_IP,GradeInsSetRoleSetRoleUrl) params:nil viewcontrllerEmpty:self success:^(id response) {
+    NSMutableDictionary * dt = [[NSMutableDictionary alloc]init];
+    if (self.subject_id) [dt setObject:self.subject_id forKey:@"subject_id"];
+    if (self.type_id) [dt setObject:self.type_id forKey:@"type_id"];
+    [LFLHttpTool post:NSStringWithFormat(SERVER_IP,GradeInsSetRoleSetRoleUrl) params:dt viewcontrllerEmpty:self success:^(id response) {
         LFLog(@"获取列表:%@",response);
         [self.collectionview.mj_header endRefreshing];
         [self.collectionview.mj_footer endRefreshing];

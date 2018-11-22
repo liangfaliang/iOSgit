@@ -320,8 +320,6 @@
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"删除";
 }
-
-
 #pragma mark - 删除
 - (void)DeleteData:(OperateListModel *)cmo{
     [self presentLoadingTips];

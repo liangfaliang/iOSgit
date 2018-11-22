@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionview;
 @property(nonatomic,strong)NSMutableArray  *imageArray;
 @property(nonatomic,strong)UIImage *picture;
+@property(nonatomic,copy)void (^imageCoumtRefrshBlock)(NSInteger count);
 @property(nonatomic,strong)OperateSubmitModel *model;
 @end

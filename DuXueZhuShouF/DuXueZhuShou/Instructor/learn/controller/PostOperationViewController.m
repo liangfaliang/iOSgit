@@ -24,7 +24,7 @@
 @property(nonatomic,strong)UIImage *picture;
 @property(nonatomic, strong)OperationHeaderView *operationView;
 @property(nonatomic, strong)OperationFooterView *footerView;
-@property(nonatomic, strong)OperateSubmitModel *model;
+
 @end
 
 @implementation PostOperationViewController
@@ -35,7 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.model = [[OperateSubmitModel alloc]init];
+    if (self.model == nil) {
+        self.model = [[OperateSubmitModel alloc]init];
+    }
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.footerView];
     [self UpData];
@@ -81,13 +83,20 @@
         return;
     }
     self.model.images = nil;
-    NSMutableArray *marr = [NSMutableArray arrayWithArray:self.imageArray];
+    NSMutableArray *marr = [[NSMutableArray alloc]init];
+    for (id obj  in self.imageArray) {
+        if ([obj isKindOfClass:[UIImage class]]) {
+            [marr addObject:obj];
+        }else{
+            self.model.images = [obj SeparatorStr:self.model.images];
+        }
+    }
     [marr removeObject:self.picture];
     if (type) {//发布 保存
         self.model.imageArr =  nil;
         [self presentLoadingTips];
         if (marr.count) {
-            [UploadManager uploadImagesWith:marr uploadFinish:^(NSArray *imFailArr){
+            NSMutableArray *taskmarr =  [UploadManager uploadImagesWith:marr uploadFinish:^(NSArray *imFailArr){
                 if (imFailArr.count) {
                     [self alertController:@"提示" prompt:[NSString stringWithFormat:@"您有%lu张图片上传失败！，是否继续",(unsigned long)marr.count] sure:@"是" cancel:@"否" success:^{
                         [self UpdateLoad:type];
@@ -108,6 +117,7 @@
             } failure:^(NSError *error, int idx) {
                 
             }];
+            [self addSessionDataTasks:taskmarr];
         }else{
             [self UpdateLoad:type];
         }
@@ -122,8 +132,15 @@
 -(OperationHeaderView *)operationView{
     if (_operationView == nil) {
         _operationView = [[NSBundle mainBundle]loadNibNamed:@"OperationHeaderView" owner:nil options:nil].firstObject;
+        WEAKSELF;
+        _operationView.imageCoumtRefrshBlock = ^(NSInteger count) {
+            [weakSelf.tableView reloadData];
+        };
         _operationView.textview.placeholder = @"请输入作业内容...";
         _operationView.model = self.model;
+        [_operationView.imageArray removeObject:_operationView.picture];
+        [_operationView.imageArray addObjectsFromArray:self.model.imageArr];
+        [_operationView.imageArray addObject:_operationView.picture];
         self.picture = _operationView.picture;
         self.imageArray = _operationView.imageArray;
     }
@@ -141,6 +158,19 @@
                              }];
         for (NSDictionary *dt in array) {
             TextSectionModel *model = [TextSectionModel mj_objectWithKeyValues:dt];
+            for (TextFiledModel *cmo in model.child) {
+                if (self.model && self.model.ID) {
+                    if ([cmo.key isEqualToString:@"group_id"]) {
+                        cmo.text = self.model.group.name;
+                    }else if ([cmo.key isEqualToString:@"subject_id"]){
+                        cmo.text = self.model.subject.name;
+                    }else{
+                        cmo.text = [UserUtils getShowDateWithTime:[self.model valueForKey:cmo.key] dateFormat:@"yyyy-MM-dd HH:mm"];
+                    }
+                    cmo.value = [self.model valueForKey:cmo.key];
+                }
+            }
+
             [_dataArray addObject:model];
         }
     }
@@ -184,7 +214,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == 0) {
-        return 245 + (screenW - 60)/3;
+        return 245 + ((screenW - 60)/3 * (self.imageArray.count/3  + (self.imageArray.count%3 ? 1 : 0))) + 10;
     }
     return 10;
 }
@@ -321,7 +351,13 @@
 -(void)UpdateLoad:(NSString *)type{//1发布，2保存
     NSMutableDictionary *mdt = [self.model mj_keyValues];
     [mdt setObject:type forKey:@"type"];
-    [LFLHttpTool post:NSStringWithFormat(SERVER_IP, OperationSubmitUrl) params:mdt viewcontrllerEmpty:self success:^(id response) {
+    [mdt removeObjectForKey:@"imageArr"];
+    [mdt removeObjectForKey:@"group"];
+    [mdt removeObjectForKey:@"subject"];
+    [mdt removeObjectForKey:@"status"];
+    [mdt removeObjectForKey:@"create_time"];
+    
+    [LFLHttpTool post:NSStringWithFormat(SERVER_IP,self.model.ID ? OperationEditSubmitUrl : OperationSubmitUrl) params:mdt viewcontrllerEmpty:self success:^(id response) {
         [self dismissTips];
         LFLog(@"tijaio:%@",response);
         NSNumber *code = @([response[@"code"] integerValue]);

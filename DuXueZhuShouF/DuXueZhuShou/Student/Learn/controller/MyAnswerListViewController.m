@@ -60,7 +60,7 @@
             [self getDataList:1 index:0];
             [self getDataList:1 index:1];
         }else{
-            self.navigationBarTitle = @"督学小助手";
+            self.navigationBarTitle = @"督学助手";
         }
 
         

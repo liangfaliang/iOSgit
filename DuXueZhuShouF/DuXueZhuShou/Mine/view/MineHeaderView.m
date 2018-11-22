@@ -31,7 +31,7 @@
         }
         [AlertView showProgress];
         __block NSString *avatar = nil;
-        [UploadManager uploadImagesWith:photos uploadFinish:^(NSArray *imFailArr) {
+         [UploadManager uploadImagesWith:photos uploadFinish:^(NSArray *imFailArr) {
             if (imFailArr.count || avatar == nil) {
                 [AlertView dismiss];
                 [AlertView showMsg:@"图片上传失败！"];

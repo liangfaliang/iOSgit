@@ -115,7 +115,7 @@
         [self.headerView.iconIm sd_setImageWithURL:[NSURL URLWithString:mo.avatar] placeholderImage:PlaceholderImage];
         if ([UserUtils getUserRole] == UserStyleStudent) {
             self.headerView.gardeLb.hidden = NO;
-            self.headerView.addressLb.text = [NSString stringWithFormat:@"%@%@%@",mo.schoolName,mo.campusName,mo.className];
+            self.headerView.addressLb.text = [NSString stringWithFormat:@"%@\n%@",mo.campusName,mo.className];
             self.headerView.gardeLb.text = [NSString stringWithFormat:@"   %@   ",mo.rank];
         }else{
             self.headerView.addressLb.text = [UserUtils getUserRole] == UserStyleInstructor ? @"学管员" : @"老师";

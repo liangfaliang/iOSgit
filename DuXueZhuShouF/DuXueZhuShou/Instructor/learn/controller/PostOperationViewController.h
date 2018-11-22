@@ -7,7 +7,8 @@
 //
 
 #import "BasicViewController.h"
-
+#import "OperateSubmitModel.h"
 @interface PostOperationViewController : BasicViewController
 @property (nonatomic,copy)void (^successBlock)(void);
+@property(nonatomic, strong)OperateSubmitModel *model;
 @end

@@ -26,7 +26,7 @@
     if (model.mode.integerValue == 2) {
         self.typeLb.backgroundColor = [UIColor colorFromHexCode:@"bbeee3"];
         self.typeLb.textColor = [UIColor colorFromHexCode:@"1ec7a1"];
-        NSString *timeLong = [NSString stringWithFormat:@"   学习时长：%@",model.minimum_time];
+        NSString *timeLong = [NSString stringWithFormat:@"   学习时长：%@min",model.minimum_time];
         [self.descBtn setAttributedTitle:[timeLong  AttributedString:@"学习时长：" backColor:nil uicolor:JHmiddleColor uifont:nil] forState:UIControlStateNormal];
     }else{
         self.typeLb.backgroundColor = [UIColor colorFromHexCode:@"c1dffd"];
@@ -42,7 +42,7 @@
     for (int i = 0 ; i < placeArr.count; i ++) {
         placeModel *mo = placeArr[i];
         UIButton *btn = [[UIButton alloc]init];
-        [btn setPropertys:[NSString stringWithFormat:@"   可签到地点%d",i+ 1] font:SYS_FONT(15) textcolor:JHmiddleColor image:[UIImage imageNamed:@"address"] state:UIControlStateNormal];
+        [btn setPropertys:[NSString stringWithFormat:@"   可签到地点%d:",i+ 1] font:SYS_FONT(15) textcolor:JHmiddleColor image:[UIImage imageNamed:@"address"] state:UIControlStateNormal];
         [btn sizeToFit];
         UILabel *lb = [UILabel initialization:CGRectZero font:SYS_FONT(15) textcolor:JHdeepColor numberOfLines:0 textAlignment:0];
         lb.text = mo.address;

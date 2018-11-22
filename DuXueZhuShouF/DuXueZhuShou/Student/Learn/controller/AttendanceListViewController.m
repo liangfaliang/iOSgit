@@ -108,6 +108,9 @@
     AttendStuModel *mo = self.dataArray[indexPath.row];
     vc.ID = mo.ID;
     vc.date = self.dateStr;
+    vc.successBlock = ^{
+        [self UpData];
+    };
     [self.navigationController pushViewController:vc animated:YES];
     
 }

@@ -4,8 +4,8 @@
 //
 //  Created by admin on 2018/5/21.
 //  Copyright © 2018年 admin. All rights reserved.
-//
-
+//学生账号  ypxs1   ypxs1123456
+//学管员xgs1  xgs1123456
 #import "LoginViewController.h"
 #import "JPUSHService.h"
 #import <UMAnalytics/MobClick.h>//友盟统计
@@ -63,6 +63,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LoginViewController);
             make.right.offset(0);
         }];
         if (i == 1) {
+            tf.secureTextEntry = YES;
             tf.text =  [UserDefault objectForKey:@"namepass"];
             UIButton *subbtn = [[UIButton alloc]init];
             subbtn.backgroundColor = JHMaincolor;
@@ -230,6 +231,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LoginViewController);
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    self.isPresent = NO;
 }
 -(void)jumpOver{
     if (self.loginResultBlock) {

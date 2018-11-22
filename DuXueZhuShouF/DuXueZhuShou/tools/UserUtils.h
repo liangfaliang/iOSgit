@@ -47,7 +47,7 @@
 
 #pragma mark - *************消息跳转*************
 +(void)MessagePushContriller:(UIViewController *)vc type:(NSString *)type ID:(NSString *)Id push_data:(NSString *)push_data;
-
++(BOOL)isCurrentViewControllerVisible:(UIViewController *)viewController;
 
 
 

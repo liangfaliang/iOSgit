@@ -5,10 +5,24 @@
 //  Created by WorkMac on 2017/4/4.
 //  Copyright © 2017年 BeijingKaiFengData. All rights reserved.
 //
-
 #import "BarChartsHelper.h"
 #import "DuXueZhuShou-Swift.h"
 #import "ChartDataFormatter.h"
+@interface lineYDataFormatter : NSObject
+<IChartValueFormatter>
+
+@end
+@implementation lineYDataFormatter
+- (NSString *)stringForValue:(double)value entry:(ChartDataEntry *)entry dataSetIndex:(NSInteger)dataSetIndex viewPortHandler:(ChartViewPortHandler *)viewPortHandler
+{
+    if (value ==  0) {
+        return @"";
+    }else{
+        return entry.data ? [NSString stringWithFormat:@"%.f",value] : [NSString stringWithFormat:@"%.f",value];
+    }
+}
+@end
+
 @interface BarChartsHelper ()
 @property (nonatomic, strong) UIView *MaskView;
 @property (nonatomic, strong) UILabel *markDataLB;
@@ -156,6 +170,7 @@
     lineChart.xAxis.labelPosition = XAxisLabelPositionBottom;
     lineChart.xAxis.granularity = 1;//粒度
     lineChart.xAxis.axisMinimum  = 0;//
+    lineChart.xAxis.axisMaxLabels = self.months.count ? self.months.count: 1 ;
     lineChart.xAxis.valueFormatter = self;
     lineChart.xAxis.labelCount = self.months.count ;
     ChartYAxis *leftAxis = lineChart.leftAxis;
@@ -165,9 +180,8 @@
 //    leftAxis.gridLineDashLengths = @[@5.f, @5.f];
     leftAxis.drawZeroLineEnabled = NO;
 //    leftAxis.drawLimitLinesBehindDataEnabled = YES;
-    
     lineChart.rightAxis.enabled = NO;
-    
+
     //[_chartView.viewPortHandler setMaximumScaleY: 2.f];
     //[_chartView.viewPortHandler setMaximumScaleX: 2.f];
     XYMarkerView *marker = [[XYMarkerView alloc]
@@ -175,23 +189,20 @@
                             font: [UIFont systemFontOfSize:12.0]
                             textColor: UIColor.whiteColor
                             insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)
-                            xAxisValueFormatter: lineChart.xAxis.valueFormatter];
+                            xAxisValueFormatter: lineChart.leftAxis.valueFormatter];
     marker.chartView = lineChart;
     marker.minimumSize = CGSizeMake(80.f, 40.f);
-//    BalloonMarker *marker = [[BalloonMarker alloc]
-//                             initWithColor: [UIColor colorWithWhite:180/255. alpha:1.0]
-//                             font: [UIFont systemFontOfSize:12.0]
-//                             textColor: UIColor.whiteColor
-//                             insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)];
-//    marker.chartView = lineChart;
-//    marker.minimumSize = CGSizeMake(80.f, 40.f);
     lineChart.marker = marker;
 //    lineChart.legend.form = ChartLegendFormLine;
     lineChart.data = [self getLineDataCount:yValues];
+
     [lineChart animateWithXAxisDuration:1];
 }
 - (LineChartData *)getLineDataCount:(NSArray *)yValues
 {
+    if (!yValues.count) {
+        return nil;
+    }
     NSMutableArray *values = [[NSMutableArray alloc] init];
     for (int i =0; i<yValues.count; i++) {
         ChartDataEntry *entry = [[ChartDataEntry alloc] initWithX:i y:[[yValues[i] isKindOfClass:[NSDictionary class]] ? yValues[i][Cyvalue] : yValues[i] doubleValue] icon: [UIImage imageNamed:@"icon"]];
@@ -220,7 +231,7 @@
 //    set1.formLineDashLengths = @[@5.f, @2.5f];
     set1.formLineWidth = 1.0;
     set1.formSize = 15.0;
-    
+
     NSArray *gradientColors = @[
                                 (id)JHColor(230, 241, 255).CGColor,
                                 (id)JHColor(247, 250, 255).CGColor
@@ -234,9 +245,11 @@
     CGGradientRelease(gradient);
     
     NSMutableArray *dataSets = [[NSMutableArray alloc] init];
-    [dataSets addObject:set1];
-    
-    return  [[LineChartData alloc] initWithDataSets:dataSets];
+    [dataSets addObject:set1 ];
+    LineChartData *data =[[LineChartData alloc] initWithDataSets:dataSets];
+    //自定义数据显示格式
+     [data setValueFormatter:[[lineYDataFormatter alloc]init]];
+    return  data;
 }
 //单柱和折线组合
 - (void)setBarChart:(CombinedChartView *)combineChart lineValues:(NSArray *)lineValues xValues:(NSArray *)xValues yValues:(NSArray *)yValues lineTitle:(NSString *)lineTitle barTitle:(NSString *)barTitle

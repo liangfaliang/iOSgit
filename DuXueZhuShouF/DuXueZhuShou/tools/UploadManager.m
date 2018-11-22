@@ -61,7 +61,7 @@
 }
 
 
-+ (void)uploadImagesWith:(NSArray *)images uploadFinish:(uploadCallBlock)finish success:(uploadSuccess)success failure:(uploadFailure)failure
++ (NSMutableArray *)uploadImagesWith:(NSArray *)images uploadFinish:(uploadCallBlock)finish success:(uploadSuccess)success failure:(uploadFailure)failure
 {
     
 //自己在处理operation上传多图的时候， 可能会出现bug   completionOperation在最后一个uploadOperation还没完成时就执行了   会导致少一张图    暂时没找到原因；希望有大神能够找出问题所在
@@ -82,7 +82,7 @@
             finish(marr);
         }];
     }];
-    
+     NSMutableArray *taskmarr = [NSMutableArray array];
     __block NSInteger imgBackCount = 0;
     for (NSInteger i = 0; i < images.count; i++) {
         
@@ -125,13 +125,14 @@
                 
             }
         }];
-        
+        [taskmarr addObject:uploadTask];
         //重写系统NSOperation 很关键  你可以直接copy
         NSURLSessionWrapperOperation *uploadOperation = [NSURLSessionWrapperOperation operationWithURLSessionTask:uploadTask];
         [completionOperation addDependency:uploadOperation];
         [queue addOperation:uploadOperation];
         
     }
+    return taskmarr;
 }
 
 #pragma mark - util

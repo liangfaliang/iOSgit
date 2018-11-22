@@ -109,7 +109,7 @@
 #define AttendancSignInUrl @"attendance/sign_in"//签到
 #define AttendancSignOutUrl @"attendance/sign_out"//签退
 #define AttendanceAllListUrl @"attendance/statistics_lst"//考勤组统计列表
-#define AttendancStuStaUrl @"attendance/statistics"//学生考勤组统计
+#define AttendancStuStaUrl @"attendance/statistics"//查询考勤情况
 
 //请假
 #define LeaveStuCategoryUrl @"leave/getLeaveCategory"//学生获取请假类型

@@ -23,5 +23,5 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *labSpace4;
 @property (nonatomic,retain) RankModel *model;
 -(void)setlabels:(NSArray *)titleArr;
-
+-(CGFloat )getHeight;
 @end

@@ -14,6 +14,7 @@
 #import "SelectTimeView.h"
 #import "AttendanceDetailViewController.h"
 #import "AttendSubmitModel.h"
+#import "PublishedViewController.h"
 @interface JobInsStatisticsViewController ()<SPPageMenuDelegate,UITableViewDataSource, UITableViewDelegate,TFPickerDelegate>
 @property (nonatomic, strong) SPPageMenu *pageMenu;
 @property (nonatomic, strong) UIView *headerView;
@@ -201,6 +202,8 @@
         picker.maxDate = [[NSDate date] timeIntervalSince1970];
         picker.selectDate = picker.maxDate;
     }else{
+        [self.dataArray removeAllObjects];
+        [self.tableView reloadData];
         if (!self.optionArray.count) {
             [self presentLoadingTips];
             WEAKSELF;
@@ -246,6 +249,7 @@
         [self presentLoadingTips:@"请选择考勤组"];
     }else{
         [self getData];
+        
         if (!self.isKaoQin) [self getDataInsHistory];
     }
 }
@@ -261,19 +265,15 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LabelsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LabelsTableViewCell class]) forIndexPath:indexPath];
+    cell.menuArr = self.isKaoQin ?@[@"       日期       ",@"正常签到",@"异常签到",@"未签到",@"出勤率"] : @[@"       日期       ",@"已完成",@"未完成",@"未打卡",@"完成率"];
     if (indexPath.section == 0) {
-        if (self.isKaoQin) {
-            [cell setBackViewSubviews:@[@"       日期       ",@"正常签到",@"异常签到",@"未签到",@"出勤率"]];
-        }else{
-            [cell setBackViewSubviews:@[@"       日期       ",@"已完成",@"未完成",@"未打卡",@"完成率"]];
-        }
-        
+        [cell setBackViewSubviews:cell.menuArr];
     }else{
         NSDictionary *dt = self.dataArray[indexPath.row];
         if (self.isKaoQin) {
-                    [cell setBackViewSubviews:@[dt[@"date"],lStringFor(dt[@"status_1"]),lStringFor(dt[@"status_2"]),lStringFor(dt[@"status_3"]),lStringFor(dt[@"rate"])]];
+                    [cell setBackViewSubviews:@[dt[@"date"],lStringFor(dt[@"status_1"]),lStringFor(dt[@"status_2"]),lStringFor(dt[@"status_3"]),lStringFormart(@"%@",dt[@"rate"])]];
         }else{
-                    [cell setBackViewSubviews:@[[UserUtils getShowDateWithTime:dt[@"start_time"] dateFormat:@"yyyy.MM.dd"],lStringFor(dt[@"student_completed_number"]),lStringFor(dt[@"student_uncompleted_number"]),lStringFor(dt[@"student_uncard_number"]),lStringFor(dt[@"rate"])]];;
+                    [cell setBackViewSubviews:@[[UserUtils getShowDateWithTime:dt[@"start_time"] dateFormat:@"yyyy.MM.dd"],lStringFor(dt[@"student_completed_number"]),lStringFor(dt[@"student_uncompleted_number"]),lStringFor(dt[@"student_uncard_number"]),lStringFormart(@"%@%%",dt[@"rate"])]];;
         }
 
     }
@@ -282,10 +282,21 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isKaoQin) {
-        AttendanceDetailViewController *vc = [[AttendanceDetailViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+    
+    if (indexPath.section) {
+        NSDictionary *dt = self.dataArray[indexPath.row];
+        if (self.isKaoQin) {
+            AttendanceDetailViewController *vc = [[AttendanceDetailViewController alloc]init];
+            vc.ID = self.attenID;
+            vc.date = dt[@"date"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            PublishedViewController *vc = [[PublishedViewController alloc]init];
+            vc.ID = dt[@"id"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
+
     
 }
 
@@ -370,7 +381,8 @@
 - (void)getDataInsHistory{
     NSMutableDictionary * dt = [[NSMutableDictionary alloc]init];
     [dt setObject:[UserUtils getTimeStrWithString:self.selectView.leftView.titleLb.text dateFormat:@"yyyy-MM-dd"] forKey:@"start_time"];
-    [dt setObject:[UserUtils getTimeStrWithString:self.selectView.rightView.titleLb.text dateFormat:@"yyyy-MM-dd"] forKey:@"end_time"];
+    NSInteger end_time = [UserUtils getTimeStrWithString:self.selectView.rightView.titleLb.text dateFormat:@"yyyy-MM-dd"].integerValue + 86399;
+    [dt setObject:lStringFormart(@"%ld",(long)end_time) forKey:@"end_time"];
     [LFLHttpTool post:NSStringWithFormat(SERVER_IP,OperationInsHistoryUrl) params:dt viewcontrllerEmpty:self success:^(id response) {
         LFLog(@"获取学管历史总比:%@",response);
         [self.tableView.mj_header endRefreshing];
@@ -379,8 +391,8 @@
         if ([str isEqualToString:@"1"] && [response[@"data"] isKindOfClass:[NSDictionary class]]) {
             CGFloat status_1_total = [response[@"data"][@"student_completed_number"] floatValue];
             CGFloat total = [response[@"data"][@"student_number"] floatValue];
-            NSString *text = [NSString stringWithFormat:@"%@\n实到%.f/应到%.f",response[@"data"][@"rate"],status_1_total,total];
-            _cleView.label.attributedText = [text AttributedString:response[@"data"][@"rate"] backColor:nil uicolor:JHMaincolor uifont:SYS_FONT(20)];
+            NSString *text = [NSString stringWithFormat:@"%@%%\n实际完成%.f人/应完成%.f人",response[@"data"][@"rate"],status_1_total,total];
+            _cleView.label.attributedText = [text AttributedString:[NSString stringWithFormat:@"%@%%",response[@"data"][@"rate"]] backColor:nil uicolor:JHMaincolor uifont:SYS_FONT(20)];
             [_cleView.label NSParagraphStyleAttributeName:10];
             [_cleView drawProgress:total > 0 ? status_1_total/total : 0];
             

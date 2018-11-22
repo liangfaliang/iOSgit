@@ -9,5 +9,6 @@
 #import "BasicViewController.h"
 
 @interface HallofFameViewController : BasicViewController
-
+@property (nonatomic,strong)NSString * subject_id;
+@property (nonatomic,strong)NSString * type_id;
 @end

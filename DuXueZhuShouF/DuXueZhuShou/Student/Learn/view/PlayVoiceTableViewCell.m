@@ -47,7 +47,7 @@
     [[RecordManage sharedRecordManage] p_musicPlayerWithURL:[NSURL URLWithString:url]];
 }
 -(void)startPlayWithplayer:(AVPlayer *)player{
-    [self.playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
+    [self.playBtn setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
 }
 -(void)FinishedPlayWithplayer{
     [self.playBtn setImage:[UIImage imageNamed:@"ting"] forState:UIControlStateNormal];

@@ -14,5 +14,6 @@
 @property (assign,nonatomic) UIEdgeInsets margin;
 @property (strong,nonatomic) UIColor *textColor;
 @property (strong,nonatomic) UIFont *textFont;
+@property (strong,nonatomic) NSArray *menuArr;
 -(void)setBackViewSubviews:(NSArray *)titleArr;
 @end

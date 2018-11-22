@@ -42,9 +42,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LFLHttpTool);
         BasicViewController *bvc = (BasicViewController *)vc;
         if (bvc.isLoadEnd) bvc.isLoadEnd = @0;
     }
+    LFLHttpTool *httptool = [LFLHttpTool sharedLFLHttpTool];
+    if (httptool.isCancelRepeat) {
+        if ([httptool ignoreRequestWithUrl:url params:params]) {//忽略请求
+            LFLog(@"请求被忽略 URL:%@\n参数mdt：%@",url,params);
+            return;
+        }
+    }else{
+        httptool.isCancelRepeat = YES;//每次不取消重复 重置为取消重复
+    }
     LFLog(@"参数mdt：%@",params);
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-
     [mgr.requestSerializer setStringEncoding:NSUTF8StringEncoding];
     mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
     mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -53,16 +61,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LFLHttpTool);
     mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/json",@"application/json",@"text/javascript",@"text/html", @"application/javascript", @"text/js", nil];
     AFJSONResponseSerializer *response = [AFJSONResponseSerializer serializer];
     response.removesKeysWithNullValues = YES;
-//    NSString *sign = [self encryptParamsWithMd5:params];
-//    
-//    [params setObject:sign forKey:@"sign"];
-    
-    [mgr GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {//下载进度
+    NSURLSessionDataTask * task =  [mgr GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {//下载进度
         
         LFLog(@"downloadProgress：%@",downloadProgress);
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (vc && [vc isKindOfClass:[BasicViewController class]]) {
             BasicViewController *bvc = (BasicViewController *)vc;
+            [bvc removeSessionDataTask:task];
             if (bvc.isLoadEnd) bvc.isLoadEnd = @1;
         }
         if (success) {//如果block有值
@@ -76,11 +81,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LFLHttpTool);
         }
         if (vc && [vc isKindOfClass:[BasicViewController class]]) {
             BasicViewController *bvc = (BasicViewController *)vc;
+            [bvc removeSessionDataTask:task];
             if (bvc.isLoadEnd) bvc.isLoadEnd = @2;
         }
     }];
-    
-  
+    if (vc && [vc isKindOfClass:[BasicViewController class]]) {
+        BasicViewController *bvc = (BasicViewController *)vc;
+        [bvc addSessionDataTask:task];
+    }
     
     
 }
@@ -166,8 +174,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LFLHttpTool);
             failure(error);
         }
     }];
-    
-    
 }
 
 
@@ -194,7 +200,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LFLHttpTool);
             return;
         }
     }else{
-        httptool.isCancelRepeat = YES;//每次不取消重复 重置为取消重复
+        httptool.isCancelRepeat = YES;//每次不取消重复 重置为取消重复生效
     }
 
     NSMutableDictionary *parmsMdt = [NSMutableDictionary dictionaryWithDictionary:params];
@@ -205,7 +211,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LFLHttpTool);
     [mgr.requestSerializer willChangeValueForKey:@"timeoutInterval"];
     mgr.requestSerializer.timeoutInterval = 30.f;
     [mgr.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-    
     [mgr.requestSerializer setValue:@"iphone" forHTTPHeaderField:@"XX-Device-Type"];
     [mgr.requestSerializer setValue:AppBuildVersion forHTTPHeaderField:@"XX-APP-VERSION"];
     UserModel *model = [UserUtils getUserInfo];
@@ -233,6 +238,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LFLHttpTool);
             if (vc) {
                 [AlertView showMsg:responseObject[@"msg"]];
                 LoginViewController *login = [LoginViewController sharedLoginViewController];
+                [login isMovingToParentViewController];
 //                [login refresh];
                 login.loginResultBlock = ^(NSInteger code) {
                     if (code ==1) {
@@ -253,8 +259,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LFLHttpTool);
 //                        }
                     }
                 };
-                if (!vc.presentedViewController && !vc.isPresent && ![vc isKindOfClass:[LoginViewController class]]) {
+                LFLog(@"viewController :%@ %@",vc,[vc.view viewController]);
+                LFLog(@"isBeingPresented:%d isMovingToParentViewController:%d",[login isBeingPresented],[login isMovingToParentViewController]);
+                if (!vc.presentedViewController && !vc.isPresent && ![vc isKindOfClass:[LoginViewController class]] && [UserUtils isCurrentViewControllerVisible:vc] && !login.isPresent) {
                     vc.isPresent = YES;
+                    login.isPresent = YES;
                     [vc presentViewController:login animated:YES completion:^{
 //                        vc.isPresent = NO;
                     }];

@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationBarTitle = @"督学小助手";
+    self.navigationBarTitle = @"督学助手";
     [self.view addSubview:self.sdCySV];
     [self.view addSubview:self.collectionview];
     [self updata];
@@ -48,6 +48,7 @@
 }
 
 -(void)updata{
+    [self getReadMessage];
     [self getData];
 }
 
@@ -67,14 +68,14 @@
             arr = @[@{@"name":@"消息",@"imgurl":@"xiaoxi"},
                     @{@"name":@"打卡作业",@"imgurl":@"daka"},
                     @{@"name":@"考勤签到",@"imgurl":@"qiandao"},
-                    @{@"name":@"测试成绩",@"imgurl":@"cjfb"},
-                    @{@"name":@"一对一答疑",@"imgurl":@"qjsp" },
-                    @{@"name":@"请假审批",@"imgurl":@"bfsp"}];
+                    @{@"name":@"测试成绩",@"imgurl":@"cscj"},
+                    @{@"name":@"一对一答疑",@"imgurl":@"ydy" },
+                    @{@"name":@"请假审批",@"imgurl":@"qjsp"}];
         }else if ([UserUtils getUserRole] == UserStyleInstructor){
             arr = @[@{@"name":@"消息",@"imgurl":@"xiaoxi"},
                     @{@"name":@"布置作业",@"imgurl":@"daka"},
                     @{@"name":@"考勤设定",@"imgurl":@"qiandao"},
-                    @{@"name":@"成绩发布",@"imgurl":@"cjfb"},
+                    @{@"name":@"成绩发布",@"imgurl":@"cscj"},
                     @{@"name":@"请假审批",@"imgurl":@"qjsp" },
                     @{@"name":@"补分审批",@"imgurl":@"bfsp"}];
         }
